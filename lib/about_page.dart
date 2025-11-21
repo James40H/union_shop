@@ -131,7 +131,10 @@ class AboutPage extends StatelessWidget {
             ),
             // About Us Section
             Container(
-              color: Colors.white,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: Colors.grey.shade300, width: 1),
+              ),
               child: Padding(
                 padding: const EdgeInsets.all(40.0),
                 child: Center(

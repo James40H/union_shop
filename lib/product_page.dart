@@ -20,7 +20,13 @@ class ProductPage extends StatelessWidget {
             // Header
             Container(
               height: 100,
-              color: Colors.white,
+              // use BoxDecoration so we can add a thin bottom border
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border(
+                  bottom: BorderSide(color: Colors.grey.shade300, width: 1),
+                ),
+              ),
               child: Column(
                 children: [
                   // Top banner
@@ -132,7 +138,10 @@ class ProductPage extends StatelessWidget {
 
             // Product details
             Container(
-              color: Colors.white,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: Colors.grey.shade300, width: 1),
+              ),
               padding: const EdgeInsets.all(24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
