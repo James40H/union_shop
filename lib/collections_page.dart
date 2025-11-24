@@ -129,7 +129,149 @@ class CollectionsPage extends StatelessWidget {
                 ],
               ),
             ),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: Colors.grey.shade300, width: 1),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(40.0),
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 700),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Collections',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 30,
+                              color: Colors.black,
+                              letterSpacing: 1,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+
+                        const SizedBox(height: 24),
+
+                        // Image box with overlay text
+                        ImageTextBox(
+                          imageUrl: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=example',
+                          height: 300,
+                          width: 300,
+                          title: 'Winter Collection',
+                          subtitle: 'Shop the new range now',
+                          onTap: placeholderCallbackForButtons,
+                        ),
+
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            )
+            
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class ImageTextBox extends StatelessWidget {
+  final String imageUrl;
+  final double height;
+  final double? width;
+  final String title;
+  final String? subtitle;
+  final VoidCallback? onTap;
+
+  const ImageTextBox({
+    super.key,
+    required this.imageUrl,
+    this.height = 180,
+    this.width,
+    required this.title,
+    this.subtitle,
+    this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: SizedBox(
+          height: 300,
+          width: 300,
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              // Background image
+              Image.network(
+                imageUrl,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    color: Colors.grey[300],
+                    child: const Center(
+                      child: Icon(Icons.image_not_supported, color: Colors.grey),
+                    ),
+                  );
+                },
+              ),
+
+              // Gradient overlay to improve text contrast
+              Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                    colors: [
+                      Colors.black87,
+                      Colors.transparent,
+                    ],
+                  ),
+                ),
+              ),
+
+              // Text content
+              Positioned(
+                left: 16,
+                right: 16,
+                bottom: 12,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        shadows: [Shadow(blurRadius: 4, color: Colors.black45)],
+                      ),
+                    ),
+                    if (subtitle != null) ...[
+                      const SizedBox(height: 4),
+                      Text(
+                        subtitle!,
+                        style: const TextStyle(
+                          color: Colors.white70,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
