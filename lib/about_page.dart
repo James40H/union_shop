@@ -181,6 +181,156 @@ The Union Shop & Reception Team''',
                 ),
               ),
             ),
+            // Footer
+            Container(
+              width: double.infinity,
+              color: Colors.grey[50],
+              padding: const EdgeInsets.all(24),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Column 1: Title / short description
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [ 
+                        Text(
+                          'Opening Hours',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          '❄️ Winter Break Closure Dates ❄️',
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
+                        ),
+                        Text(
+                          'Closing 4pm 19/12/2025',
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
+                        ),
+                        Text(
+                          'Reopening 10am 05/01/2026',
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
+                        ),
+                        Text(
+                          'Last post date: 12pm on 18/12/2025',
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
+                        ),
+                        Text(
+                          '------------------------',
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
+                        ),
+                        Text(
+                          '(Term Time)',
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
+                        ),
+                        Text(
+                          'Monday - Friday 10am - 4pm',
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
+                        ),
+                        Text(
+                          '(Outside of Term Time / Consolidation Weeks)',
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
+                        ),
+                        Text(
+                          'Monday - Friday 10am - 3pm',
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
+                        ),
+                        Text(
+                          'Purchase online 24/7',
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  // Column 2: Links
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Help and Information',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        TextButton(
+                          onPressed: placeholderCallbackForButtons,
+                          child: const Text('Search'),
+                        ),
+                        TextButton(
+                          onPressed: placeholderCallbackForButtons,
+                          child: const Text('Terms & Conditions of Sale Policy'),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  // Column 3: Email + Subscribe
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Subscribe',
+                          style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
+                        ),
+                        const SizedBox(height: 8),
+                        Row(
+                          children: [
+                            // email input
+                            Expanded(
+                              child: TextField(
+                                keyboardType: TextInputType.emailAddress,
+                                decoration: InputDecoration(
+                                  hintText: 'Enter your email',
+                                  isDense: true,
+                                  contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.black),
+                                  ),
+                                ),
+                                onSubmitted: (_) {
+                                  placeholderCallbackForButtons();
+                                },
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                          // subscribe button
+                            ElevatedButton(
+                              onPressed: placeholderCallbackForButtons,
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFF4d2963),
+                                foregroundColor: Colors.white,
+                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                              ),
+                              child: const Text('Subscribe'),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
