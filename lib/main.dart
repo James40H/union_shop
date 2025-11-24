@@ -383,22 +383,45 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
 
-                  // Column 3: Copyright + social icons
+                  // Column 3: Email + Subscribe
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Latest Offers',
-                          style: TextStyle(color: Colors.grey[600]),
+                          'Subscribe',
+                          style: TextStyle(color: Colors.grey[600], fontSize: 16, fontWeight: FontWeight.w600),
                         ),
                         const SizedBox(height: 8),
                         Row(
-                          mainAxisSize: MainAxisSize.min,
                           children: [
-                            IconButton(
+                            // email input
+                            Expanded(
+                              child: TextField(
+                                keyboardType: TextInputType.emailAddress,
+                                decoration: InputDecoration(
+                                  hintText: 'Enter your email',
+                                  isDense: true,
+                                  contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey.shade300),
+                                  ),
+                                ),
+                                onSubmitted: (_) {
+                                  placeholderCallbackForButtons();
+                                },
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                          // subscribe button
+                            ElevatedButton(
                               onPressed: placeholderCallbackForButtons,
-                              icon: const Icon(Icons.facebook, color: Colors.grey),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFF4d2963),
+                                foregroundColor: Colors.white,
+                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                              ),
+                              child: const Text('Subscribe'),
                             ),
                           ],
                         ),
