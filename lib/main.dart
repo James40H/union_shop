@@ -307,7 +307,7 @@ class HomeScreen extends StatelessWidget {
                         Text(
                           'Opening Hours',
                           style: TextStyle(
-                            color: Colors.grey,
+                            color: Colors.black,
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                           ),
@@ -315,43 +315,53 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(height: 8),
                         Text(
                           '❄️ Winter Break Closure Dates ❄️',
-                          style: TextStyle(color: Colors.grey),
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
                         ),
                         Text(
                           'Closing 4pm 19/12/2025',
-                          style: TextStyle(color: Colors.grey),
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
                         ),
                         Text(
                           'Reopening 10am 05/01/2026',
-                          style: TextStyle(color: Colors.grey),
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
                         ),
                         Text(
                           'Last post date: 12pm on 18/12/2025',
-                          style: TextStyle(color: Colors.grey),
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
                         ),
                         Text(
                           '------------------------',
-                          style: TextStyle(color: Colors.grey),
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
                         ),
                         Text(
                           '(Term Time)',
-                          style: TextStyle(color: Colors.grey),
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
                         ),
                         Text(
                           'Monday - Friday 10am - 4pm',
-                          style: TextStyle(color: Colors.grey),
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
                         ),
                         Text(
                           '(Outside of Term Time / Consolidation Weeks)',
-                          style: TextStyle(color: Colors.grey),
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
                         ),
                         Text(
                           'Monday - Friday 10am - 3pm',
-                          style: TextStyle(color: Colors.grey),
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
                         ),
                         Text(
                           'Purchase online 24/7',
-                          style: TextStyle(color: Colors.grey),
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
                         ),
                       ],
                     ),
@@ -365,7 +375,7 @@ class HomeScreen extends StatelessWidget {
                         const Text(
                           'Help and Information',
                           style: TextStyle(
-                            color: Colors.grey,
+                            color: Colors.black,
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                           ),
@@ -390,7 +400,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         Text(
                           'Subscribe',
-                          style: TextStyle(color: Colors.grey[600], fontSize: 16, fontWeight: FontWeight.w600),
+                          style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
                         ),
                         const SizedBox(height: 8),
                         Row(
@@ -404,7 +414,7 @@ class HomeScreen extends StatelessWidget {
                                   isDense: true,
                                   contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                                   border: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.grey.shade300),
+                                    borderSide: BorderSide(color: Colors.black),
                                   ),
                                 ),
                                 onSubmitted: (_) {
