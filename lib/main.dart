@@ -363,7 +363,7 @@ class HomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          'Quick Links',
+                          'Help and Information',
                           style: TextStyle(
                             color: Colors.grey,
                             fontSize: 16,
@@ -373,15 +373,11 @@ class HomeScreen extends StatelessWidget {
                         const SizedBox(height: 8),
                         TextButton(
                           onPressed: placeholderCallbackForButtons,
-                          child: const Text('About Us'),
+                          child: const Text('Search'),
                         ),
                         TextButton(
                           onPressed: placeholderCallbackForButtons,
-                          child: const Text('Products'),
-                        ),
-                        TextButton(
-                          onPressed: placeholderCallbackForButtons,
-                          child: const Text('Contact'),
+                          child: const Text('Terms & Conditions of Sale Policy'),
                         ),
                       ],
                     ),
@@ -390,10 +386,10 @@ class HomeScreen extends StatelessWidget {
                   // Column 3: Copyright + social icons
                   Expanded(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '© ${DateTime.now().year} Union Shop',
+                          'Latest Offers',
                           style: TextStyle(color: Colors.grey[600]),
                         ),
                         const SizedBox(height: 8),
