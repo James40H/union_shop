@@ -140,34 +140,43 @@ class CollectionsPage extends StatelessWidget {
                   child: ConstrainedBox(
                     constraints: const BoxConstraints(maxWidth: 700),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            'Collections',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 30,
-                              color: Colors.black,
-                              letterSpacing: 1,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        const Text(
+                          'Collections',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 30,
+                            color: Colors.black,
+                            letterSpacing: 1,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
 
                         const SizedBox(height: 24),
 
-                        // Image box with overlay text
-                        ImageTextBox(
-                          imageUrl: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=example',
-                          height: 300,
-                          width: 300,
-                          title: 'Winter Collection',
-                          subtitle: 'Shop the new range now',
-                          onTap: placeholderCallbackForButtons,
+                        // Row of images (title sits above these)
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ImageTextBox(
+                              imageUrl: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=example',
+                              height: 300,
+                              width: 300,
+                              title: 'Winter Collection',
+                              onTap: placeholderCallbackForButtons,
+                            ),
+                            const SizedBox(width: 16),
+                            ImageTextBox(
+                              imageUrl: 'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
+                              height: 300,
+                              width: 300,
+                              title: 'Clothing Collection',
+                              onTap: placeholderCallbackForButtons,
+                            ),
+                          ],
                         ),
-
                       ],
                     ),
                   ),
@@ -207,8 +216,8 @@ class ImageTextBox extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
         child: SizedBox(
-          height: 300,
-          width: 300,
+          height: height,
+          width: width ?? double.infinity,
           child: Stack(
             fit: StackFit.expand,
             children: [
@@ -226,48 +235,50 @@ class ImageTextBox extends StatelessWidget {
                 },
               ),
 
-              // Gradient overlay to improve text contrast
+              // Optional gradient overlay to improve text contrast
               Container(
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
                     colors: [
-                      Colors.black87,
+                      Colors.black45,
                       Colors.transparent,
                     ],
                   ),
                 ),
               ),
 
-              // Text content
-              Positioned(
-                left: 16,
-                right: 16,
-                bottom: 12,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        shadows: [Shadow(blurRadius: 4, color: Colors.black45)],
-                      ),
-                    ),
-                    if (subtitle != null) ...[
-                      const SizedBox(height: 4),
+              // Centered text content
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
                       Text(
-                        subtitle!,
+                        title,
+                        textAlign: TextAlign.center,
                         style: const TextStyle(
-                          color: Colors.white70,
-                          fontSize: 14,
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          shadows: [Shadow(blurRadius: 6, color: Colors.black45)],
                         ),
                       ),
+                      if (subtitle != null) ...[
+                        const SizedBox(height: 8),
+                        Text(
+                          subtitle!,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: Colors.white70,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
                     ],
-                  ],
+                  ),
                 ),
               ),
             ],
