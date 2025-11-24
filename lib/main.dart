@@ -303,9 +303,9 @@ class HomeScreen extends StatelessWidget {
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: const [ 
                         Text(
-                          'Union Shop',
+                          'Opening Hours',
                           style: TextStyle(
                             color: Colors.grey,
                             fontSize: 16,
@@ -314,7 +314,43 @@ class HomeScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 8),
                         Text(
-                          'Placeholder short description for the shop. Add contact info or a tagline here.',
+                          '❄️ Winter Break Closure Dates ❄️',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        Text(
+                          'Closing 4pm 19/12/2025',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        Text(
+                          'Reopening 10am 05/01/2026',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        Text(
+                          'Last post date: 12pm on 18/12/2025',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        Text(
+                          '------------------------',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        Text(
+                          '(Term Time)',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        Text(
+                          'Monday - Friday 10am - 4pm',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        Text(
+                          '(Outside of Term Time / Consolidation Weeks)',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        Text(
+                          'Monday - Friday 10am - 3pm',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        Text(
+                          'Purchase online 24/7',
                           style: TextStyle(color: Colors.grey),
                         ),
                       ],
