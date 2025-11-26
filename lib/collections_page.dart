@@ -138,7 +138,7 @@ class CollectionsPage extends StatelessWidget {
                 padding: const EdgeInsets.all(40.0),
                 child: Center(
                   child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 700),
+                    constraints: const BoxConstraints(maxWidth: 950),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -158,7 +158,7 @@ class CollectionsPage extends StatelessWidget {
                         // Row of images (title sits above these)
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          //mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             ImageTextBox(
                               imageUrl: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=example',
@@ -175,6 +175,15 @@ class CollectionsPage extends StatelessWidget {
                               title: 'Clothing Collection',
                               onTap: placeholderCallbackForButtons,
                             ),
+                            const SizedBox(width: 16),
+                            ImageTextBox(
+                              imageUrl: 'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
+                              height: 300,
+                              width: 300,
+                              title: 'Sale Collection',
+                              onTap: placeholderCallbackForButtons,
+                            ),
+                            const SizedBox(width: 16),
                           ],
                         ),
                       ],
@@ -384,18 +393,18 @@ class ImageTextBox extends StatelessWidget {
               ),
 
               // Optional gradient overlay to improve text contrast
-              Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                    colors: [
-                      Colors.black45,
-                      Colors.transparent,
-                    ],
-                  ),
-                ),
-              ),
+              //Container(
+              //  decoration: const BoxDecoration(
+              //    gradient: LinearGradient(
+              //      begin: Alignment.bottomCenter,
+              //      end: Alignment.topCenter,
+              //      colors: [
+              //        Colors.black45,
+              //        Colors.transparent,
+              //      ],
+              //    ),
+              //  ),
+              //),
 
               // Centered text content
               Center(
