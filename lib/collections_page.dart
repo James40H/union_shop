@@ -161,7 +161,7 @@ class CollectionsPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             ImageTextBox(
-                              imageUrl: 'assests/images/Winter_Collection.webp',
+                              imageUrl: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=example',
                               height: 300,
                               width: 300,
                               title: 'Winter Collection',
@@ -169,7 +169,7 @@ class CollectionsPage extends StatelessWidget {
                             ),
                             const SizedBox(width: 16),
                             ImageTextBox(
-                              imageUrl: 'assests/images/Jumper.webp',
+                              imageUrl: 'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
                               height: 300,
                               width: 300,
                               title: 'Clothing Collection',
