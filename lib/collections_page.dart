@@ -156,65 +156,73 @@ class CollectionsPage extends StatelessWidget {
                         const SizedBox(height: 24),
 
                         // Row of images (title sits above these)
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            ImageTextBox(
-                              imageUrl: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=example',
-                              height: 300,
-                              width: 300,
-                              title: 'Winter Collection',
-                              onTap: placeholderCallbackForButtons,
-                            ),
-                            const SizedBox(width: 16),
-                            ImageTextBox(
-                              imageUrl: 'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
-                              height: 300,
-                              width: 300,
-                              title: 'Clothing Collection',
-                              onTap: placeholderCallbackForButtons,
-                            ),
-                            const SizedBox(width: 16),
-                            ImageTextBox(
-                              imageUrl: 'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
-                              height: 300,
-                              width: 300,
-                              title: 'Sale Collection',
-                              onTap: placeholderCallbackForButtons,
-                            ),
-                            const SizedBox(width: 16),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ImageTextBox(
+                                imageUrl: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=example',
+                                height: 300,
+                                width: 300,
+                                title: 'Winter Collection',
+                                onTap: placeholderCallbackForButtons,
+                              ),
+                              const SizedBox(width: 16),
+                              ImageTextBox(
+                                imageUrl: 'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
+                                height: 300,
+                                width: 300,
+                                title: 'Clothing Collection',
+                                onTap: placeholderCallbackForButtons,
+                              ),
+                              const SizedBox(width: 16),
+                              ImageTextBox(
+                                imageUrl: 'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
+                                height: 300,
+                                width: 300,
+                                title: 'Sale Collection',
+                                onTap: placeholderCallbackForButtons,
+                              ),
+                            ],
+                          ),
                         ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            ImageTextBox(
-                              imageUrl: 'assets/images/blue_t-shirt.jpg',
-                              height: 300,
-                              width: 300,
-                              title: 'T-Shirt Collection',
-                              onTap: placeholderCallbackForButtons,
-                            ),
-                            const SizedBox(width: 16),
-                            ImageTextBox(
-                              imageUrl: 'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
-                              height: 300,
-                              width: 300,
-                              title: 'Clothing Collection',
-                              onTap: placeholderCallbackForButtons,
-                            ),
-                            const SizedBox(width: 16),
-                            ImageTextBox(
-                              imageUrl: 'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
-                              height: 300,
-                              width: 300,
-                              title: 'Sale Collection',
-                              onTap: placeholderCallbackForButtons,
-                            ),
-                            const SizedBox(width: 16),
-                          ],
+
+                        // extra gap between the two rows of collections
+                        const SizedBox(height: 24),
+
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ImageTextBox(
+                                imageUrl: 'assets/images/blue_t-shirt.jpg',
+                                height: 300,
+                                width: 300,
+                                title: 'T-Shirt Collection',
+                                onTap: placeholderCallbackForButtons,
+                              ),
+                              const SizedBox(width: 16),
+                              ImageTextBox(
+                                imageUrl: 'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
+                                height: 300,
+                                width: 300,
+                                title: 'Clothing Collection',
+                                onTap: placeholderCallbackForButtons,
+                              ),
+                              const SizedBox(width: 16),
+                              ImageTextBox(
+                                imageUrl: 'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
+                                height: 300,
+                                width: 300,
+                                title: 'Sale Collection',
+                                onTap: placeholderCallbackForButtons,
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
