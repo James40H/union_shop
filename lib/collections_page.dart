@@ -194,7 +194,7 @@ class CollectionsPage extends StatelessWidget {
                               imageUrl: 'assets/images/blue_t-shirt.jpg',
                               height: 300,
                               width: 300,
-                              title: 'Winter Collection',
+                              title: 'T-Shirt Collection',
                               onTap: placeholderCallbackForButtons,
                             ),
                             const SizedBox(width: 16),
@@ -408,19 +408,52 @@ class ImageTextBox extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              // Background image
-              Image.network(
-                imageUrl,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    color: Colors.grey[300],
-                    child: const Center(
-                      child: Icon(Icons.image_not_supported, color: Colors.grey),
-                    ),
+              // Background image (supports network or local asset). If the image is the blue T‑shirt asset,
+              // overlay a semi-transparent grey container to "grey out" the background.
+              Builder(builder: (context) {
+                final isBlueTshirt = imageUrl.toLowerCase().contains('blue_t-shirt');
+
+                Widget loadedImage;
+                if (imageUrl.toLowerCase().startsWith('http')) {
+                  loadedImage = Image.network(
+                    imageUrl,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        color: Colors.grey[300],
+                        child: const Center(
+                          child: Icon(Icons.image_not_supported, color: Colors.grey),
+                        ),
+                      );
+                    },
                   );
-                },
-              ),
+                } else {
+                  loadedImage = Image.asset(
+                    imageUrl,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        color: Colors.grey[300],
+                        child: const Center(
+                          child: Icon(Icons.image_not_supported, color: Colors.grey),
+                        ),
+                      );
+                    },
+                  );
+                }
+
+                if (isBlueTshirt) {
+                  return Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      loadedImage,
+                      Container(color: Colors.grey.withOpacity(0.6)),
+                    ],
+                  );
+                }
+
+                return loadedImage;
+              }),
 
               // Optional gradient overlay to improve text contrast
               //Container(
