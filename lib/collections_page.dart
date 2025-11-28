@@ -7,6 +7,10 @@ class CollectionsPage extends StatelessWidget {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
   }
 
+  void navigateToCollections(BuildContext context) {
+    Navigator.pushNamed(context, '/collections');
+  }
+
   void placeholderCallbackForButtons() {
     // This is the event handler for buttons that don't work yet
   }
