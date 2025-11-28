@@ -47,6 +47,10 @@ class HomeScreen extends StatelessWidget {
     Navigator.pushNamed(context, '/about-us');
   }
 
+  void navigateToCollections(BuildContext context) {
+    Navigator.pushNamed(context, '/collections');
+  }
+
   void placeholderCallbackForButtons() {
     // This is the event handler for buttons that don't work yet
   }
@@ -121,7 +125,7 @@ class HomeScreen extends StatelessWidget {
                                     ),
                                   ),
                                   TextButton(
-                                    onPressed: placeholderCallbackForButtons,
+                                    onPressed: () =>  navigateToCollections(context),
                                     style: TextButton.styleFrom(
                                       foregroundColor: Colors.black,
                                       padding: const EdgeInsets.symmetric(horizontal: 12),
