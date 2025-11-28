@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 class ClothingCollectionPage extends StatelessWidget {
   const ClothingCollectionPage({super.key});
+  
+  VoidCallback? get placeholderCallbackForButtons => null;
 
   void navigateToHome(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
