@@ -291,25 +291,29 @@ class SalePage extends StatelessWidget {
                       children: const [
                         ProductCard(
                           title: 'Jumper 1',
-                          price: '£5.00',
+                          price: '£25.00',     // original
+                          salePrice: '£5.00',  // current/sale price shown next to it
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
                         ),
                         ProductCard(
                           title: 'Jumper 2',
-                          price: '£15.00',
+                          price: '£35.00',
+                          salePrice: '£15.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PurpleHoodieFinal.jpg?v=1742201957',
                         ),
                         ProductCard(
                           title: 'Jumper 3',
                           price: '£20.00',
+                          salePrice: '£10.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/Ivory_Hoodie_1024x1024@2x.png?v=1745583522',
                         ),
                         ProductCard(
                           title: 'Jumper 4',
                           price: '£25.00',
+                          salePrice: '£5.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/BurgundyHoodieFinal_430x_12f854ab-f6b5-4e7c-892a-89b92bae04c7_1024x1024@2x.webp?v=1752225891',
                         ),
@@ -475,14 +479,16 @@ class SalePage extends StatelessWidget {
 }
 class ProductCard extends StatelessWidget {
   final String title;
-  final String price;
+  final String price; // original price (will be shown struck-through when salePrice set)
   final String imageUrl;
+  final String? salePrice; // optional current price to show next to the struck-through original
 
   const ProductCard({
     super.key,
     required this.title,
     required this.price,
     required this.imageUrl,
+    this.salePrice,
   });
 
   @override
@@ -492,13 +498,13 @@ class ProductCard extends StatelessWidget {
         Navigator.pushNamed(context, '/product');
       },
       child: SizedBox(
-        width: 300,
-        height: 300, // fixed height you asked for
+        // increased width so the price area has more room
+        width: 340,
+        height: 300,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max, // <-- fill the 300px height
+          mainAxisSize: MainAxisSize.max,
           children: [
-            // image expands to take available vertical space
             Expanded(
               child: AspectRatio(
                 aspectRatio: 1.0,
@@ -530,14 +536,41 @@ class ProductCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 4),
-                  Text(
-                    price,
-                    style: const TextStyle(
-                      fontSize: 13,
-                      color: Colors.grey,
-                     decoration: TextDecoration.lineThrough,
+                  // Show original (struck-through) and optional sale price beside it.
+                  // The original price is wrapped in Expanded so it can use available width.
+                  if (salePrice != null)
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            price,
+                            style: const TextStyle(
+                              fontSize: 13,
+                              color: Colors.grey,
+                              decoration: TextDecoration.lineThrough,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          salePrice!,
+                          style: const TextStyle(
+                            fontSize: 13,
+                            color: Colors.redAccent,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    )
+                  else
+                    Text(
+                      price,
+                      style: const TextStyle(
+                        fontSize: 13,
+                        color: Colors.grey,
+                      ),
                     ),
-                  ),
                 ],
               ),
             ),
