@@ -4,6 +4,7 @@ import 'package:union_shop/about_page.dart';
 import 'package:union_shop/collections_page.dart';
 import 'package:union_shop/clothing_collection_page.dart';
 import 'package:union_shop/sale_page.dart';
+import 'package:union_shop/login_page.dart';
 
 void main() {
   runApp(const UnionShopApp());
@@ -31,6 +32,7 @@ class UnionShopApp extends StatelessWidget {
       '/collections': (context) => const CollectionsPage(),
       '/collections/clothing': (context) => const ClothingCollectionPage(),
       '/collections/sale': (context) => const SalePage(),
+      '/login': (context) => const LoginPage(),
       },
     );
   }
@@ -58,6 +60,8 @@ class HomeScreen extends StatelessWidget {
   void navigateToSale(BuildContext context) {
     Navigator.pushNamed(context, '/collections/sale');
   }
+
+  
 
   void placeholderCallbackForButtons() {
     // This is the event handler for buttons that don't work yet
