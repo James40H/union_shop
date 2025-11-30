@@ -291,7 +291,7 @@ class SalePage extends StatelessWidget {
                       children: const [
                         ProductCard(
                           title: 'Jumper 1',
-                          price: '£10.00',
+                          price: '£5.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
                         ),
@@ -532,7 +532,11 @@ class ProductCard extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     price,
-                    style: const TextStyle(fontSize: 13, color: Colors.grey),
+                    style: const TextStyle(
+                      fontSize: 13,
+                      color: Colors.grey,
+                     decoration: TextDecoration.lineThrough,
+                    ),
                   ),
                 ],
               ),
