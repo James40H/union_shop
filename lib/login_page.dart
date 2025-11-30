@@ -20,10 +20,14 @@ class LoginPage extends StatelessWidget {
     Navigator.pushNamed(context, '/collections');
   }
 
+  void navigateToSale(BuildContext context) {
+    Navigator.pushNamed(context, '/collections/sale');
+  }
+
   void placeholderCallbackForButtons() {
     // This is the event handler for buttons that don't work yet
   }
-  
+
 
   
   @override
@@ -131,7 +135,7 @@ class LoginPage extends StatelessWidget {
                                           ),
                                         ),
                                         TextButton(
-                                          onPressed: placeholderCallbackForButtons,
+                                          onPressed: () => navigateToSale(context),
                                           style: TextButton.styleFrom(
                                             foregroundColor: Colors.black,
                                             padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -226,7 +230,7 @@ class LoginPage extends StatelessWidget {
                                                 placeholderCallbackForButtons();
                                                 break;
                                               case 'sale':
-                                                placeholderCallbackForButtons();
+                                                navigateToSale(context);
                                                 break;
                                               case 'about':
                                                 navigateToAbout(context);

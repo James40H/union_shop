@@ -19,6 +19,10 @@ void navigateToHome(BuildContext context) {
     Navigator.pushNamed(context, '/collections');
   }
 
+  void navigateToSale(BuildContext context) {
+    Navigator.pushNamed(context, '/collections/sale');
+  }
+
   void placeholderCallbackForButtons() {
     // This is the event handler for buttons that don't work yet
   }
@@ -129,7 +133,7 @@ void navigateToHome(BuildContext context) {
                                           ),
                                         ),
                                         TextButton(
-                                          onPressed: placeholderCallbackForButtons,
+                                          onPressed: () => navigateToSale(context),
                                           style: TextButton.styleFrom(
                                             foregroundColor: Colors.black,
                                             padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -224,7 +228,7 @@ void navigateToHome(BuildContext context) {
                                                 placeholderCallbackForButtons();
                                                 break;
                                               case 'sale':
-                                                placeholderCallbackForButtons();
+                                                navigateToSale(context);
                                                 break;
                                               case 'about':
                                                 navigateToAbout(context);
