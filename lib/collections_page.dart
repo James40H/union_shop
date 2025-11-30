@@ -34,338 +34,309 @@ class CollectionsPage extends StatelessWidget {
         child: Column(
           children: [
             // Header
-            Container(
-              height: 100,
-              color: Colors.white,
-              child: Column(
-                children: [
-                  // Top banner
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    color: const Color(0xFF4d2963),
-                    child: const Text(
-                      'BIG SALE! OUR ESSENTIAL RANGE HAS DROPPED IN PRICE! OVER 20% OFF! COME GRAB YOURS WHILE STOCK LASTS!',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                  ),
-                  // Main header
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              navigateToHome(context);
-                            },
-                            child: Image.network(
-                              'https://shop.upsu.net/cdn/shop/files/upsu_300x300.png?v=1614735854',
-                              height: 18,
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) {
-                                return Container(
-                                  color: Colors.grey[300],
-                                  width: 18,
-                                  height: 18,
-                                  child: const Center(
-                                    child: Icon(Icons.image_not_supported,
-                                        color: Colors.grey),
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                          // Centered header buttons
-                          Expanded(
-                          child: Center(
-                            child: LayoutBuilder(builder: (context, constraints) {
-                              final isMobile = constraints.maxWidth < 600;
-                              if (isMobile) {
-                                return PopupMenuButton<String>(
-                                  child: TextButton(
-                                    onPressed: null,
-                                    style: TextButton.styleFrom(
-                                      foregroundColor: Colors.black,
-                                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                                      minimumSize: const Size(0, 36),
-                                    ),
-                                    child: const Text(
-                                      'Menu',
-                                      style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                    ),
-                                  ),
-                                  onSelected: (value) {
-                                    switch (value) {
-                                      case 'home':
-                                        navigateToHome(context);
-                                        break;
-                                      case 'shop':
-                                        navigateToCollections(context);
-                                        break;
-                                      case 'print_shack':
-                                        placeholderCallbackForButtons();
-                                        break;
-                                      case 'sale':
-                                        placeholderCallbackForButtons();
-                                        break;
-                                      case 'about':
-                                        navigateToAbout(context);
-                                        break;
-                                    }
-                                  },
-                                  itemBuilder: (context) => const [
-                                    PopupMenuItem(value: 'home', child: Text('Home')),
-                                    PopupMenuItem(value: 'shop', child: Text('SHOP')),
-                                    PopupMenuItem(value: 'print_shack', child: Text('The Print Shack')),
-                                    PopupMenuItem(value: 'sale', child: Text('SALE!')),
-                                    PopupMenuItem(value: 'about', child: Text('About')),
-                                  ],
-                                );
-                              } else {
-                                return Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    TextButton(
-                                      onPressed: () => navigateToHome(context),
-                                      style: TextButton.styleFrom(
-                                        foregroundColor: Colors.black,
-                                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                                        minimumSize: const Size(0, 36),
-                                      ),
-                                      child: const Text(
-                                        'Home',
-                                        style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                      ),
-                                    ),
-                                    TextButton(
-                                      onPressed: () => navigateToCollections(context),
-                                      style: TextButton.styleFrom(
-                                        foregroundColor: Colors.black,
-                                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                                        minimumSize: const Size(0, 36),
-                                      ),
-                                      child: const Text(
-                                        'SHOP',
-                                        style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                      ),
-                                    ),
-                                    TextButton(
-                                      onPressed: placeholderCallbackForButtons,
-                                      style: TextButton.styleFrom(
-                                        foregroundColor: Colors.black,
-                                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                                        minimumSize: const Size(0, 36),
-                                      ),
-                                      child: const Text(
-                                        'The Print Shack',
-                                        style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                      ),
-                                    ),
-                                    TextButton(
-                                      onPressed: placeholderCallbackForButtons,
-                                      style: TextButton.styleFrom(
-                                        foregroundColor: Colors.black,
-                                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                                        minimumSize: const Size(0, 36),
-                                      ),
-                                      child: const Text(
-                                        'SALE!',
-                                        style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                      ),
-                                    ),
-                                    TextButton(
-                                      onPressed: () => navigateToAbout(context),
-                                      style: TextButton.styleFrom(
-                                        foregroundColor: Colors.black,
-                                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                                        minimumSize: const Size(0, 36),
-                                      ),
-                                      child: const Text(
-                                        'About',
-                                        style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                      ),
-                                    ),
-                                  ],
-                                );
-                              }
-                            }),
-                          ),
-                        ),
-                          ConstrainedBox(
-                            constraints: const BoxConstraints(maxWidth: 600),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                IconButton(
-                                  icon: const Icon(
-                                    Icons.search,
-                                    size: 18,
-                                    color: Colors.grey,
-                                  ),
-                                  padding: const EdgeInsets.all(8),
-                                  constraints: const BoxConstraints(
-                                    minWidth: 32,
-                                    minHeight: 32,
-                                  ),
-                                  onPressed: placeholderCallbackForButtons,
-                                ),
-                                IconButton(
-                                  icon: const Icon(
-                                    Icons.person_outline,
-                                    size: 18,
-                                    color: Colors.grey,
-                                  ),
-                                  padding: const EdgeInsets.all(8),
-                                  constraints: const BoxConstraints(
-                                    minWidth: 32,
-                                    minHeight: 32,
-                                  ),
-                                  onPressed: placeholderCallbackForButtons,
-                                ),
-                                IconButton(
-                                  icon: const Icon(
-                                    Icons.shopping_bag_outlined,
-                                    size: 18,
-                                    color: Colors.grey,
-                                  ),
-                                  padding: const EdgeInsets.all(8),
-                                  constraints: const BoxConstraints(
-                                    minWidth: 32,
-                                    minHeight: 32,
-                                  ),
-                                  onPressed: placeholderCallbackForButtons,
-                                ),
-                                IconButton(
-                                  icon: const Icon(
-                                    Icons.menu,
-                                    size: 18,
-                                    color: Colors.grey,
-                                  ),
-                                  padding: const EdgeInsets.all(8),
-                                  constraints: const BoxConstraints(
-                                    minWidth: 32,
-                                    minHeight: 32,
-                                  ),
-                                  onPressed: placeholderCallbackForButtons,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+            LayoutBuilder(builder: (context, constraints) {
+              final isMobile = constraints.maxWidth < 600;
+              final headerHeight = isMobile ? 140.0 : 100.0;
+              return Container(
+                height: headerHeight,
+                color: Colors.white,
+                child: Column(
+                  children: [
+                    // Top banner
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      color: const Color(0xFF4d2963),
+                      child: const Text(
+                        'BIG SALE! OUR ESSENTIAL RANGE HAS DROPPED IN PRICE! OVER 20% OFF! COME GRAB YOURS WHILE STOCK LASTS!',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white, fontSize: 16),
                       ),
                     ),
+                    // Main header
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                navigateToHome(context);
+                              },
+                              child: Image.network(
+                                'https://shop.upsu.net/cdn/shop/files/upsu_300x300.png?v=1614735854',
+                                height: isMobile ? 30 : 30, // slightly larger logo on mobile
+                                fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) {
+                                  return Container(
+                                    color: Colors.grey[300],
+                                    width: 18,
+                                    height: 18,
+                                    child: const Center(
+                                      child: Icon(Icons.image_not_supported,
+                                          color: Colors.grey),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            // Centered header buttons
+                            Expanded(
+                              child: Center(
+                                child: LayoutBuilder(builder: (context, constraints) {
+                                  final isMobileInner = constraints.maxWidth < 600;
+                                  if (isMobileInner) {
+                                    // On mobile we move the menu into the right-hand menu icon,
+                                    // so render nothing here to keep the header compact.
+                                    return const SizedBox.shrink();
+                                  } else {
+                                    return Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        TextButton(
+                                          onPressed: () => navigateToHome(context),
+                                          style: TextButton.styleFrom(
+                                            foregroundColor: Colors.black,
+                                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                                            minimumSize: const Size(0, 36),
+                                          ),
+                                          child: const Text(
+                                            'Home',
+                                            style: TextStyle(letterSpacing: 1, fontSize: 14),
+                                          ),
+                                        ),
+                                        TextButton(
+                                          onPressed: () => navigateToCollections(context),
+                                          style: TextButton.styleFrom(
+                                            foregroundColor: Colors.black,
+                                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                                            minimumSize: const Size(0, 36),
+                                          ),
+                                          child: const Text(
+                                            'SHOP',
+                                            style: TextStyle(letterSpacing: 1, fontSize: 14),
+                                          ),
+                                        ),
+                                        TextButton(
+                                          onPressed: placeholderCallbackForButtons,
+                                          style: TextButton.styleFrom(
+                                            foregroundColor: Colors.black,
+                                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                                            minimumSize: const Size(0, 36),
+                                          ),
+                                          child: const Text(
+                                            'The Print Shack',
+                                            style: TextStyle(letterSpacing: 1, fontSize: 14),
+                                          ),
+                                        ),
+                                        TextButton(
+                                          onPressed: placeholderCallbackForButtons,
+                                          style: TextButton.styleFrom(
+                                            foregroundColor: Colors.black,
+                                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                                            minimumSize: const Size(0, 36),
+                                          ),
+                                          child: const Text(
+                                            'SALE!',
+                                            style: TextStyle(letterSpacing: 1, fontSize: 14),
+                                          ),
+                                        ),
+                                        TextButton(
+                                          onPressed: () => navigateToAbout(context),
+                                          style: TextButton.styleFrom(
+                                            foregroundColor: Colors.black,
+                                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                                            minimumSize: const Size(0, 36),
+                                          ),
+                                          child: const Text(
+                                            'About',
+                                            style: TextStyle(letterSpacing: 1, fontSize: 14),
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  }
+                                }),
+                              ),
+                            ),
+                            ConstrainedBox(
+                              constraints: const BoxConstraints(maxWidth: 600),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  IconButton(
+                                    icon: const Icon(
+                                      Icons.search,
+                                      size: 18,
+                                      color: Colors.grey,
+                                    ),
+                                    padding: const EdgeInsets.all(8),
+                                    constraints: const BoxConstraints(
+                                      minWidth: 32,
+                                      minHeight: 32,
+                                    ),
+                                    onPressed: placeholderCallbackForButtons,
+                                  ),
+                                  IconButton(
+                                    icon: const Icon(
+                                      Icons.person_outline,
+                                      size: 18,
+                                      color: Colors.grey,
+                                    ),
+                                    padding: const EdgeInsets.all(8),
+                                    constraints: const BoxConstraints(
+                                      minWidth: 32,
+                                      minHeight: 32,
+                                    ),
+                                    onPressed: placeholderCallbackForButtons,
+                                  ),
+                                  IconButton(
+                                    icon: const Icon(
+                                      Icons.shopping_bag_outlined,
+                                      size: 18,
+                                      color: Colors.grey,
+                                    ),
+                                    padding: const EdgeInsets.all(8),
+                                    constraints: const BoxConstraints(
+                                      minWidth: 32,
+                                      minHeight: 32,
+                                    ),
+                                    onPressed: placeholderCallbackForButtons,
+                                  ),
+                                  // On narrow screens show the popup menu from the menu icon.
+                                  // On wider screens keep a plain icon button (or use it later).
+                                  isMobile
+                                      ? PopupMenuButton<String>(
+                                          icon: const Icon(
+                                            Icons.menu,
+                                            size: 18,
+                                            color: Colors.grey,
+                                          ),
+                                          padding: const EdgeInsets.all(8),
+                                          onSelected: (value) {
+                                            switch (value) {
+                                              case 'home':
+                                                navigateToHome(context);
+                                                break;
+                                              case 'shop':
+                                                navigateToCollections(context);
+                                                break;
+                                              case 'print_shack':
+                                                placeholderCallbackForButtons();
+                                                break;
+                                              case 'sale':
+                                                placeholderCallbackForButtons();
+                                                break;
+                                              case 'about':
+                                                navigateToAbout(context);
+                                                break;
+                                            }
+                                          },
+                                          itemBuilder: (ctx) => const [
+                                            PopupMenuItem(value: 'home', child: Text('Home')),
+                                            PopupMenuItem(value: 'shop', child: Text('SHOP')),
+                                            PopupMenuItem(value: 'print_shack', child: Text('The Print Shack')),
+                                            PopupMenuItem(value: 'sale', child: Text('SALE!')),
+                                            PopupMenuItem(value: 'about', child: Text('About')),
+                                          ],
+                                        )
+                                      : IconButton(
+                                          icon: const Icon(
+                                            Icons.menu,
+                                            size: 18,
+                                            color: Colors.grey,
+                                          ),
+                                          padding: const EdgeInsets.all(8),
+                                          constraints: const BoxConstraints(
+                                            minWidth: 32,
+                                            minHeight: 32,
+                                          ),
+                                          onPressed: placeholderCallbackForButtons,
+                                        ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
+
+            const SizedBox(height: 24),
+            // Row of images (title sits above these)
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ImageTextBox(
+                    imageUrl: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=300&auto=format&fit=crop',
+                    height: 300,
+                    width: 300,
+                    title: 'Winter Collection',
+                    onTap: placeholderCallbackForButtons,
+                  ),
+                  const SizedBox(width: 16),
+                  ImageTextBox(
+                    imageUrl: 'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
+                    height: 300,
+                    width: 300,
+                    title: 'Clothing',
+                    onTap: () => navigateToClothingCollection(context),
+                  ),
+                  const SizedBox(width: 16),
+                  ImageTextBox(
+                    imageUrl: 'assets/images/blue_t-shirt.jpg',
+                    height: 300,
+                    width: 300,
+                    title: 'Sale',
+                    onTap: placeholderCallbackForButtons,
                   ),
                 ],
               ),
             ),
-
-            // Collections content
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: Colors.grey.shade300, width: 1),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(40.0),
-                child: Center(
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 950),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'Collections',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 30,
-                            color: Colors.black,
-                            letterSpacing: 1,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-
-                        const SizedBox(height: 24),
-
-                        // Row of images (title sits above these)
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ImageTextBox(
-                                imageUrl: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=300&auto=format&fit=crop',
-                                height: 300,
-                                width: 300,
-                                title: 'Winter Collection',
-                                onTap: placeholderCallbackForButtons,
-                              ),
-                              const SizedBox(width: 16),
-                              ImageTextBox(
-                                imageUrl: 'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
-                                height: 300,
-                                width: 300,
-                                title: 'Clothing',
-                                onTap: () => navigateToClothingCollection(context),
-                              ),
-                              const SizedBox(width: 16),
-                              ImageTextBox(
-                                imageUrl: 'assets/images/blue_t-shirt.jpg',
-                                height: 300,
-                                width: 300,
-                                title: 'Sale',
-                                onTap: placeholderCallbackForButtons,
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        // extra gap between the two rows of collections
-                        const SizedBox(height: 24),
-
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ImageTextBox(
-                                imageUrl: 'assets/images/blue_t-shirt.jpg',
-                                height: 300,
-                                width: 300,
-                                title: 'T-Shirts',
-                                onTap: placeholderCallbackForButtons,
-                              ),
-                              const SizedBox(width: 16),
-                              ImageTextBox(
-                                imageUrl: 'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
-                                height: 300,
-                                width: 300,
-                                title: 'Specials',
-                                onTap: placeholderCallbackForButtons,
-                              ),
-                              const SizedBox(width: 16),
-                              ImageTextBox(
-                                imageUrl: 'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
-                                height: 300,
-                                width: 300,
-                                title: 'Black Friday Deals',
-                                onTap: placeholderCallbackForButtons,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+            // extra gap between the two rows of collections
+            const SizedBox(height: 24),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ImageTextBox(
+                    imageUrl: 'assets/images/blue_t-shirt.jpg',
+                    height: 300,
+                    width: 300,
+                    title: 'T-Shirts',
+                    onTap: placeholderCallbackForButtons,
                   ),
-                ),
+                  const SizedBox(width: 16),
+                  ImageTextBox(
+                    imageUrl: 'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
+                    height: 300,
+                    width: 300,
+                    title: 'Specials',
+                    onTap: placeholderCallbackForButtons,
+                  ),
+                  const SizedBox(width: 16),
+                  ImageTextBox(
+                    imageUrl: 'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
+                    height: 300,
+                    width: 300,
+                    title: 'Black Friday Deals',
+                    onTap: placeholderCallbackForButtons,
+                  ),
+                ],
               ),
             ),
-
-            // Footer / info
+            
+           // Footer / info
             Container(
               width: double.infinity,
               color: Colors.grey[50],
@@ -377,7 +348,7 @@ class CollectionsPage extends StatelessWidget {
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           'Opening Hours',
                           style: TextStyle(
@@ -389,48 +360,57 @@ class CollectionsPage extends StatelessWidget {
                         SizedBox(height: 8),
                         Text(
                           '❄️ Winter Break Closure Dates ❄️',
-                          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
                         ),
                         Text(
                           'Closing 4pm 19/12/2025',
-                          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
                         ),
                         Text(
                           'Reopening 10am 05/01/2026',
-                          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
                         ),
                         Text(
                           'Last post date: 12pm on 18/12/2025',
-                          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
                         ),
                         Text(
                           '------------------------',
-                          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
                         ),
                         Text(
                           '(Term Time)',
-                          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
                         ),
                         Text(
                           'Monday - Friday 10am - 4pm',
-                          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
                         ),
                         Text(
                           '(Outside of Term Time / Consolidation Weeks)',
-                          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
                         ),
                         Text(
                           'Monday - Friday 10am - 3pm',
-                          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
                         ),
                         Text(
                           'Purchase online 24/7',
-                          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                          style: TextStyle(color: Colors.black,
+                          fontWeight: FontWeight.bold,)
                         ),
                       ],
                     ),
                   ),
-
                   // Column 2: Links
                   Expanded(
                     child: Column(
@@ -456,7 +436,6 @@ class CollectionsPage extends StatelessWidget {
                       ],
                     ),
                   ),
-
                   // Column 3: Email + Subscribe
                   Expanded(
                     child: Column(
@@ -487,7 +466,7 @@ class CollectionsPage extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 8),
-                            // subscribe button
+                          // subscribe button
                             ElevatedButton(
                               onPressed: placeholderCallbackForButtons,
                               style: ElevatedButton.styleFrom(
@@ -511,6 +490,7 @@ class CollectionsPage extends StatelessWidget {
     );
   }
 }
+
 
 class ImageTextBox extends StatelessWidget {
   final String imageUrl;
