@@ -58,6 +58,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Make the scaffold background white so the login area appears fully white
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -292,12 +294,15 @@ class _LoginPageState extends State<LoginPage> {
             // Main login card (centered)
             Container(
               width: double.infinity,
+              // ensure the login band is white
               color: Colors.white,
               padding: const EdgeInsets.symmetric(vertical: 48, horizontal: 16),
               child: Center(
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 520),
                   child: Card(
+                    // explicitly set the card color to white
+                    color: Colors.white,
                     elevation: 6,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                     child: Padding(
