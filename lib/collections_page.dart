@@ -7,6 +7,14 @@ class CollectionsPage extends StatelessWidget {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
   }
 
+  void navigateToProduct(BuildContext context) {
+    Navigator.pushNamed(context, '/product');
+  }
+
+  void navigateToAbout(BuildContext context) {
+    Navigator.pushNamed(context, '/about-us');
+  }
+
   void navigateToCollections(BuildContext context) {
     Navigator.pushNamed(context, '/collections');
   }
@@ -65,7 +73,77 @@ class CollectionsPage extends StatelessWidget {
                               },
                             ),
                           ),
-                          const Spacer(),
+                          const SizedBox(width: 12),
+                          // Centered header buttons
+                          Expanded(
+                            child: Center(
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  TextButton(
+                                    onPressed: () => navigateToHome(context),
+                                    style: TextButton.styleFrom(
+                                      foregroundColor: Colors.black,
+                                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                                      minimumSize: const Size(0, 36),
+                                    ),
+                                    child: const Text(
+                                      'Home',
+                                      style: TextStyle(letterSpacing: 1, fontSize: 14),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () => navigateToCollections(context),
+                                    style: TextButton.styleFrom(
+                                      foregroundColor: Colors.black,
+                                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                                      minimumSize: const Size(0, 36),
+                                    ),
+                                    child: const Text(
+                                      'SHOP',
+                                      style: TextStyle(letterSpacing: 1, fontSize: 14),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: placeholderCallbackForButtons,
+                                    style: TextButton.styleFrom(
+                                      foregroundColor: Colors.black,
+                                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                                      minimumSize: const Size(0, 36),
+                                    ),
+                                    child: const Text(
+                                      'The Print Shack',
+                                      style: TextStyle(letterSpacing: 1, fontSize: 14),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: placeholderCallbackForButtons,
+                                    style: TextButton.styleFrom(
+                                      foregroundColor: Colors.black,
+                                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                                      minimumSize: const Size(0, 36),
+                                    ),
+                                    child: const Text(
+                                      'SALE!',
+                                      style: TextStyle(letterSpacing: 1, fontSize: 14),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () => navigateToAbout(context),
+                                    style: TextButton.styleFrom(
+                                      foregroundColor: Colors.black,
+                                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                                      minimumSize: const Size(0, 36),
+                                    ),
+                                    child: const Text(
+                                      'About',
+                                      style: TextStyle(letterSpacing: 1, fontSize: 14),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                           ConstrainedBox(
                             constraints: const BoxConstraints(maxWidth: 600),
                             child: Row(
@@ -133,6 +211,8 @@ class CollectionsPage extends StatelessWidget {
                 ],
               ),
             ),
+
+            // Collections content
             Container(
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -167,7 +247,7 @@ class CollectionsPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               ImageTextBox(
-                                imageUrl: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=example',
+                                imageUrl: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=300&auto=format&fit=crop',
                                 height: 300,
                                 width: 300,
                                 title: 'Winter Collection',
@@ -183,7 +263,7 @@ class CollectionsPage extends StatelessWidget {
                               ),
                               const SizedBox(width: 16),
                               ImageTextBox(
-                                imageUrl: 'assets/images/sale_convered.jpg',
+                                imageUrl: 'assets/images/blue_t-shirt.jpg',
                                 height: 300,
                                 width: 300,
                                 title: 'Sale',
@@ -234,6 +314,8 @@ class CollectionsPage extends StatelessWidget {
                 ),
               ),
             ),
+
+            // Footer / info
             Container(
               width: double.infinity,
               color: Colors.grey[50],
@@ -245,7 +327,7 @@ class CollectionsPage extends StatelessWidget {
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [ 
+                      children: const [
                         Text(
                           'Opening Hours',
                           style: TextStyle(
@@ -257,53 +339,43 @@ class CollectionsPage extends StatelessWidget {
                         SizedBox(height: 8),
                         Text(
                           '❄️ Winter Break Closure Dates ❄️',
-                          style: TextStyle(color: Colors.black,
-                          fontWeight: FontWeight.bold,)
+                          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           'Closing 4pm 19/12/2025',
-                          style: TextStyle(color: Colors.black,
-                          fontWeight: FontWeight.bold,)
+                          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           'Reopening 10am 05/01/2026',
-                          style: TextStyle(color: Colors.black,
-                          fontWeight: FontWeight.bold,)
+                          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           'Last post date: 12pm on 18/12/2025',
-                          style: TextStyle(color: Colors.black,
-                          fontWeight: FontWeight.bold,)
+                          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           '------------------------',
-                          style: TextStyle(color: Colors.black,
-                          fontWeight: FontWeight.bold,)
+                          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           '(Term Time)',
-                          style: TextStyle(color: Colors.black,
-                          fontWeight: FontWeight.bold,)
+                          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           'Monday - Friday 10am - 4pm',
-                          style: TextStyle(color: Colors.black,
-                          fontWeight: FontWeight.bold,)
+                          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           '(Outside of Term Time / Consolidation Weeks)',
-                          style: TextStyle(color: Colors.black,
-                          fontWeight: FontWeight.bold,)
+                          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           'Monday - Friday 10am - 3pm',
-                          style: TextStyle(color: Colors.black,
-                          fontWeight: FontWeight.bold,)
+                          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           'Purchase online 24/7',
-                          style: TextStyle(color: Colors.black,
-                          fontWeight: FontWeight.bold,)
+                          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -365,7 +437,7 @@ class CollectionsPage extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 8),
-                          // subscribe button
+                            // subscribe button
                             ElevatedButton(
                               onPressed: placeholderCallbackForButtons,
                               style: ElevatedButton.styleFrom(
@@ -431,6 +503,9 @@ class ImageTextBox extends StatelessWidget {
                     imageUrl,
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {
+                      // Log the error so you can inspect it in the debug console
+                      debugPrint('Image.network failed: $imageUrl -> $error');
+                      debugPrintStack(stackTrace: stackTrace);
                       return Container(
                         color: Colors.grey[300],
                         child: const Center(
@@ -444,6 +519,8 @@ class ImageTextBox extends StatelessWidget {
                     imageUrl,
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {
+                      debugPrint('Image.asset failed: $imageUrl -> $error');
+                      debugPrintStack(stackTrace: stackTrace);
                       return Container(
                         color: Colors.grey[300],
                         child: const Center(
@@ -466,20 +543,6 @@ class ImageTextBox extends StatelessWidget {
 
                 return loadedImage;
               }),
-
-              // Optional gradient overlay to improve text contrast
-              //Container(
-              //  decoration: const BoxDecoration(
-              //    gradient: LinearGradient(
-              //      begin: Alignment.bottomCenter,
-              //      end: Alignment.topCenter,
-              //      colors: [
-              //        Colors.black45,
-              //        Colors.transparent,
-              //      ],
-              //    ),
-              //  ),
-              //),
 
               // Centered text content
               Center(
