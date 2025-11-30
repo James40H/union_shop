@@ -183,7 +183,7 @@ class CollectionsPage extends StatelessWidget {
                               ),
                               const SizedBox(width: 16),
                               ImageTextBox(
-                                imageUrl: 'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
+                                imageUrl: 'assets/images/sale_convered.jpg',
                                 height: 300,
                                 width: 300,
                                 title: 'Sale',
