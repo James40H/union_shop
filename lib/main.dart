@@ -61,7 +61,9 @@ class HomeScreen extends StatelessWidget {
     Navigator.pushNamed(context, '/collections/sale');
   }
 
-  
+  void navigateToLogin(BuildContext context) {
+    Navigator.pushNamed(context, '/login');
+  }
 
   void placeholderCallbackForButtons() {
     // This is the event handler for buttons that don't work yet
