@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class ClothingCollectionPage extends StatelessWidget {
   const ClothingCollectionPage({super.key});
   
-  VoidCallback? get placeholderCallbackForButtons => null;
 
   void navigateToHome(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
@@ -21,6 +20,10 @@ class ClothingCollectionPage extends StatelessWidget {
 
   void navigateToClothingCollection(BuildContext context) {
     Navigator.pushNamed(context, '/collections/clothing');
+  }
+
+   void placeholderCallbackForButtons() {
+    // This is the event handler for buttons that don't work yet
   }
 
   @override
@@ -75,7 +78,7 @@ class ClothingCollectionPage extends StatelessWidget {
                           ),
                           const SizedBox(width: 12),
                           // Centered header buttons
-                          Expanded(
+                           Expanded(
                             child: Center(
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
