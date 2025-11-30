@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AboutPage extends StatelessWidget {
-  const AboutPage({super.key});
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
     void navigateToHome(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
@@ -23,6 +23,7 @@ class AboutPage extends StatelessWidget {
   void placeholderCallbackForButtons() {
     // This is the event handler for buttons that don't work yet
   }
+  
 
   
   @override
@@ -270,7 +271,7 @@ class AboutPage extends StatelessWidget {
 
 
 
-            
+
              // Footer
             Container(
               width: double.infinity,
