@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
-    void navigateToHome(BuildContext context) {
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailCtrl = TextEditingController();
+  final _passwordCtrl = TextEditingController();
+  bool _obscure = true;
+  bool _remember = false;
+  bool _loading = false;
+
+  void navigateToHome(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
   }
 
@@ -16,7 +28,6 @@ class LoginPage extends StatelessWidget {
   }
 
   void navigateToCollections(BuildContext context) {
-    // Navigate to the collections/shop page; update route name as needed.
     Navigator.pushNamed(context, '/collections');
   }
 
@@ -25,18 +36,32 @@ class LoginPage extends StatelessWidget {
   }
 
   void placeholderCallbackForButtons() {
-    // This is the event handler for buttons that don't work yet
+    // placeholder
   }
 
+  Future<void> _signIn() async {
+    if (!_formKey.currentState!.validate()) return;
+    setState(() => _loading = true);
+    await Future.delayed(const Duration(seconds: 1)); // replace with real auth
+    setState(() => _loading = false);
+    // on success
+    navigateToHome(context);
+  }
 
-  
+  @override
+  void dispose() {
+    _emailCtrl.dispose();
+    _passwordCtrl.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Header
+            // Header (kept from your original file)
             LayoutBuilder(builder: (context, constraints) {
               final isMobile = constraints.maxWidth < 600;
               final headerHeight = isMobile ? 140.0 : 100.0;
@@ -64,12 +89,10 @@ class LoginPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             GestureDetector(
-                              onTap: () {
-                                navigateToHome(context);
-                              },
+                              onTap: () => navigateToHome(context),
                               child: Image.network(
                                 'https://shop.upsu.net/cdn/shop/files/upsu_300x300.png?v=1614735854',
-                                height: isMobile ? 30 : 30, // slightly larger logo on mobile
+                                height: isMobile ? 30 : 30,
                                 fit: BoxFit.cover,
                                 errorBuilder: (context, error, stackTrace) {
                                   return Container(
@@ -91,8 +114,6 @@ class LoginPage extends StatelessWidget {
                                 child: LayoutBuilder(builder: (context, constraints) {
                                   final isMobileInner = constraints.maxWidth < 600;
                                   if (isMobileInner) {
-                                    // On mobile we move the menu into the right-hand menu icon,
-                                    // so render nothing here to keep the header compact.
                                     return const SizedBox.shrink();
                                   } else {
                                     return Row(
@@ -208,8 +229,6 @@ class LoginPage extends StatelessWidget {
                                     ),
                                     onPressed: placeholderCallbackForButtons,
                                   ),
-                                  // On narrow screens show the popup menu from the menu icon.
-                                  // On wider screens keep a plain icon button (or use it later).
                                   isMobile
                                       ? PopupMenuButton<String>(
                                           icon: const Icon(
@@ -270,13 +289,148 @@ class LoginPage extends StatelessWidget {
               );
             }),
 
+            // Main login card (centered)
+            Container(
+              width: double.infinity,
+              color: Colors.white,
+              padding: const EdgeInsets.symmetric(vertical: 48, horizontal: 16),
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 520),
+                  child: Card(
+                    elevation: 6,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Image.network(
+                            'https://shop.upsu.net/cdn/shop/files/upsu_300x300.png?v=1614735854',
+                            height: 48,
+                            errorBuilder: (ctx, er, st) => const SizedBox.shrink(),
+                          ),
+                          const SizedBox(height: 16),
+                          const Text(
+                            'Sign in',
+                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                          ),
+                          const SizedBox(height: 8),
+                          const Text(
+                            'Sign in to your account to continue',
+                            style: TextStyle(color: Colors.black54),
+                          ),
+                          const SizedBox(height: 16),
+                          Form(
+                            key: _formKey,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                TextFormField(
+                                  controller: _emailCtrl,
+                                  keyboardType: TextInputType.emailAddress,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Email',
+                                    prefixIcon: Icon(Icons.email),
+                                  ),
+                                  validator: (v) {
+                                    if (v == null || v.trim().isEmpty) return 'Enter your email';
+                                    final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
+                                    if (!emailRegex.hasMatch(v.trim())) return 'Enter a valid email';
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 12),
+                                TextFormField(
+                                  controller: _passwordCtrl,
+                                  obscureText: _obscure,
+                                  decoration: InputDecoration(
+                                    labelText: 'Password',
+                                    prefixIcon: const Icon(Icons.lock),
+                                    suffixIcon: IconButton(
+                                      icon: Icon(_obscure ? Icons.visibility : Icons.visibility_off),
+                                      onPressed: () => setState(() => _obscure = !_obscure),
+                                    ),
+                                  ),
+                                  validator: (v) {
+                                    if (v == null || v.isEmpty) return 'Enter your password';
+                                    if (v.length < 6) return 'Password must be at least 6 characters';
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 8),
+                                Row(
+                                  children: [
+                                    Checkbox(
+                                      value: _remember,
+                                      onChanged: (v) => setState(() => _remember = v ?? false),
+                                    ),
+                                    const Text('Remember me'),
+                                    const Spacer(),
+                                    TextButton(
+                                      onPressed: placeholderCallbackForButtons,
+                                      child: const Text('Forgot password?'),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 12),
+                                SizedBox(
+                                  height: 48,
+                                  child: ElevatedButton(
+                                    onPressed: _loading ? null : _signIn,
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: const Color(0xFF4d2963),
+                                    ),
+                                    child: _loading
+                                        ? const SizedBox(
+                                            height: 20,
+                                            width: 20,
+                                            child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+                                          )
+                                        : const Text('Sign in'),
+                                  ),
+                                ),
+                                const SizedBox(height: 12),
+                                Row(
+                                  children: const [
+                                    Expanded(child: Divider()),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                      child: Text('or'),
+                                    ),
+                                    Expanded(child: Divider()),
+                                  ],
+                                ),
+                                const SizedBox(height: 12),
+                                SizedBox(
+                                  height: 44,
+                                  child: OutlinedButton.icon(
+                                    onPressed: placeholderCallbackForButtons,
+                                    icon: const Icon(Icons.login),
+                                    label: const Text('Sign in with Google'),
+                                  ),
+                                ),
+                                const SizedBox(height: 12),
+                                Center(
+                                  child: TextButton(
+                                    onPressed: () {
+                                      Navigator.pushNamed(context, '/register');
+                                    },
+                                    child: const Text('Create account'),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
 
-
-
-
-
-
-             // Footer
+            // Footer (kept from your original file)
             Container(
               width: double.infinity,
               color: Colors.grey[50],
@@ -288,7 +442,7 @@ class LoginPage extends StatelessWidget {
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [ 
+                      children: const [
                         Text(
                           'Opening Hours',
                           style: TextStyle(
@@ -298,56 +452,25 @@ class LoginPage extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 8),
-                        Text(
-                          '❄️ Winter Break Closure Dates ❄️',
-                          style: TextStyle(color: Colors.black,
-                          fontWeight: FontWeight.bold,)
-                        ),
-                        Text(
-                          'Closing 4pm 19/12/2025',
-                          style: TextStyle(color: Colors.black,
-                          fontWeight: FontWeight.bold,)
-                        ),
-                        Text(
-                          'Reopening 10am 05/01/2026',
-                          style: TextStyle(color: Colors.black,
-                          fontWeight: FontWeight.bold,)
-                        ),
-                        Text(
-                          'Last post date: 12pm on 18/12/2025',
-                          style: TextStyle(color: Colors.black,
-                          fontWeight: FontWeight.bold,)
-                        ),
-                        Text(
-                          '------------------------',
-                          style: TextStyle(color: Colors.black,
-                          fontWeight: FontWeight.bold,)
-                        ),
-                        Text(
-                          '(Term Time)',
-                          style: TextStyle(color: Colors.black,
-                          fontWeight: FontWeight.bold,)
-                        ),
-                        Text(
-                          'Monday - Friday 10am - 4pm',
-                          style: TextStyle(color: Colors.black,
-                          fontWeight: FontWeight.bold,)
-                        ),
-                        Text(
-                          '(Outside of Term Time / Consolidation Weeks)',
-                          style: TextStyle(color: Colors.black,
-                          fontWeight: FontWeight.bold,)
-                        ),
-                        Text(
-                          'Monday - Friday 10am - 3pm',
-                          style: TextStyle(color: Colors.black,
-                          fontWeight: FontWeight.bold,)
-                        ),
-                        Text(
-                          'Purchase online 24/7',
-                          style: TextStyle(color: Colors.black,
-                          fontWeight: FontWeight.bold,)
-                        ),
+                        Text('❄️ Winter Break Closure Dates ❄️',
+                            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                        Text('Closing 4pm 19/12/2025',
+                            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                        Text('Reopening 10am 05/01/2026',
+                            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                        Text('Last post date: 12pm on 18/12/2025',
+                            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                        Text('------------------------',
+                            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                        Text('(Term Time)', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                        Text('Monday - Friday 10am - 4pm',
+                            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                        Text('(Outside of Term Time / Consolidation Weeks)',
+                            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                        Text('Monday - Friday 10am - 3pm',
+                            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                        Text('Purchase online 24/7',
+                            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
                       ],
                     ),
                   ),
@@ -408,7 +531,7 @@ class LoginPage extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 8),
-                          // subscribe button
+                            // subscribe button
                             ElevatedButton(
                               onPressed: placeholderCallbackForButtons,
                               style: ElevatedButton.styleFrom(
@@ -431,4 +554,4 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
-} 
+}
