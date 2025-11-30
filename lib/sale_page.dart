@@ -290,28 +290,28 @@ class SalePage extends StatelessWidget {
                       childAspectRatio: 0.75, // tighter aspect to reduce extra vertical white space
                       children: const [
                         ProductCard(
-                          title: 'Jumper 1',
+                          title: 'Sale Jumper 1',
                           price: '£25.00',     // original
                           salePrice: '£5.00',  // current/sale price shown next to it
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
                         ),
                         ProductCard(
-                          title: 'Jumper 2',
+                          title: 'Sale Jumper 2',
                           price: '£35.00',
                           salePrice: '£15.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PurpleHoodieFinal.jpg?v=1742201957',
                         ),
                         ProductCard(
-                          title: 'Jumper 3',
+                          title: 'Sale Jumper 3',
                           price: '£20.00',
                           salePrice: '£10.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/Ivory_Hoodie_1024x1024@2x.png?v=1745583522',
                         ),
                         ProductCard(
-                          title: 'Jumper 4',
+                          title: 'Sale Jumper 4',
                           price: '£25.00',
                           salePrice: '£5.00',
                           imageUrl:
