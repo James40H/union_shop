@@ -19,6 +19,10 @@ class CollectionsPage extends StatelessWidget {
     Navigator.pushNamed(context, '/collections');
   }
 
+  void navigateToClothingCollection(BuildContext context) {
+    Navigator.pushNamed(context, '/collections/clothing');
+  }
+
   void placeholderCallbackForButtons() {
     // This is the event handler for buttons that don't work yet
   }
@@ -76,74 +80,120 @@ class CollectionsPage extends StatelessWidget {
                           const SizedBox(width: 12),
                           // Centered header buttons
                           Expanded(
-                            child: Center(
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  TextButton(
-                                    onPressed: () => navigateToHome(context),
+                          child: Center(
+                            child: LayoutBuilder(builder: (context, constraints) {
+                              final isMobile = constraints.maxWidth < 600;
+                              if (isMobile) {
+                                return PopupMenuButton<String>(
+                                  child: TextButton(
+                                    onPressed: null,
                                     style: TextButton.styleFrom(
                                       foregroundColor: Colors.black,
                                       padding: const EdgeInsets.symmetric(horizontal: 12),
                                       minimumSize: const Size(0, 36),
                                     ),
                                     child: const Text(
-                                      'Home',
+                                      'Menu',
                                       style: TextStyle(letterSpacing: 1, fontSize: 14),
                                     ),
                                   ),
-                                  TextButton(
-                                    onPressed: () => navigateToCollections(context),
-                                    style: TextButton.styleFrom(
-                                      foregroundColor: Colors.black,
-                                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                                      minimumSize: const Size(0, 36),
+                                  onSelected: (value) {
+                                    switch (value) {
+                                      case 'home':
+                                        navigateToHome(context);
+                                        break;
+                                      case 'shop':
+                                        navigateToCollections(context);
+                                        break;
+                                      case 'print_shack':
+                                        placeholderCallbackForButtons();
+                                        break;
+                                      case 'sale':
+                                        placeholderCallbackForButtons();
+                                        break;
+                                      case 'about':
+                                        navigateToAbout(context);
+                                        break;
+                                    }
+                                  },
+                                  itemBuilder: (context) => const [
+                                    PopupMenuItem(value: 'home', child: Text('Home')),
+                                    PopupMenuItem(value: 'shop', child: Text('SHOP')),
+                                    PopupMenuItem(value: 'print_shack', child: Text('The Print Shack')),
+                                    PopupMenuItem(value: 'sale', child: Text('SALE!')),
+                                    PopupMenuItem(value: 'about', child: Text('About')),
+                                  ],
+                                );
+                              } else {
+                                return Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    TextButton(
+                                      onPressed: () => navigateToHome(context),
+                                      style: TextButton.styleFrom(
+                                        foregroundColor: Colors.black,
+                                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                                        minimumSize: const Size(0, 36),
+                                      ),
+                                      child: const Text(
+                                        'Home',
+                                        style: TextStyle(letterSpacing: 1, fontSize: 14),
+                                      ),
                                     ),
-                                    child: const Text(
-                                      'SHOP',
-                                      style: TextStyle(letterSpacing: 1, fontSize: 14),
+                                    TextButton(
+                                      onPressed: () => navigateToCollections(context),
+                                      style: TextButton.styleFrom(
+                                        foregroundColor: Colors.black,
+                                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                                        minimumSize: const Size(0, 36),
+                                      ),
+                                      child: const Text(
+                                        'SHOP',
+                                        style: TextStyle(letterSpacing: 1, fontSize: 14),
+                                      ),
                                     ),
-                                  ),
-                                  TextButton(
-                                    onPressed: placeholderCallbackForButtons,
-                                    style: TextButton.styleFrom(
-                                      foregroundColor: Colors.black,
-                                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                                      minimumSize: const Size(0, 36),
+                                    TextButton(
+                                      onPressed: placeholderCallbackForButtons,
+                                      style: TextButton.styleFrom(
+                                        foregroundColor: Colors.black,
+                                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                                        minimumSize: const Size(0, 36),
+                                      ),
+                                      child: const Text(
+                                        'The Print Shack',
+                                        style: TextStyle(letterSpacing: 1, fontSize: 14),
+                                      ),
                                     ),
-                                    child: const Text(
-                                      'The Print Shack',
-                                      style: TextStyle(letterSpacing: 1, fontSize: 14),
+                                    TextButton(
+                                      onPressed: placeholderCallbackForButtons,
+                                      style: TextButton.styleFrom(
+                                        foregroundColor: Colors.black,
+                                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                                        minimumSize: const Size(0, 36),
+                                      ),
+                                      child: const Text(
+                                        'SALE!',
+                                        style: TextStyle(letterSpacing: 1, fontSize: 14),
+                                      ),
                                     ),
-                                  ),
-                                  TextButton(
-                                    onPressed: placeholderCallbackForButtons,
-                                    style: TextButton.styleFrom(
-                                      foregroundColor: Colors.black,
-                                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                                      minimumSize: const Size(0, 36),
+                                    TextButton(
+                                      onPressed: () => navigateToAbout(context),
+                                      style: TextButton.styleFrom(
+                                        foregroundColor: Colors.black,
+                                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                                        minimumSize: const Size(0, 36),
+                                      ),
+                                      child: const Text(
+                                        'About',
+                                        style: TextStyle(letterSpacing: 1, fontSize: 14),
+                                      ),
                                     ),
-                                    child: const Text(
-                                      'SALE!',
-                                      style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                    ),
-                                  ),
-                                  TextButton(
-                                    onPressed: () => navigateToAbout(context),
-                                    style: TextButton.styleFrom(
-                                      foregroundColor: Colors.black,
-                                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                                      minimumSize: const Size(0, 36),
-                                    ),
-                                    child: const Text(
-                                      'About',
-                                      style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                                  ],
+                                );
+                              }
+                            }),
                           ),
+                        ),
                           ConstrainedBox(
                             constraints: const BoxConstraints(maxWidth: 600),
                             child: Row(
@@ -259,7 +309,7 @@ class CollectionsPage extends StatelessWidget {
                                 height: 300,
                                 width: 300,
                                 title: 'Clothing',
-                                onTap: placeholderCallbackForButtons,
+                                onTap: () => navigateToClothingCollection(context),
                               ),
                               const SizedBox(width: 16),
                               ImageTextBox(
