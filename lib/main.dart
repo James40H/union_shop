@@ -57,6 +57,10 @@ class HomeScreen extends StatelessWidget {
     Navigator.pushNamed(context, '/collections');
   }
 
+  void navigateToClothingCollections(BuildContext context) {
+    Navigator.pushNamed(context, '/collections/clothing');
+  }
+
   void navigateToSale(BuildContext context) {
     Navigator.pushNamed(context, '/collections/sale');
   }
@@ -321,7 +325,7 @@ class HomeScreen extends StatelessWidget {
                       decoration: const BoxDecoration(
                         image: DecorationImage(
                           image: NetworkImage(
-                            'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
+                            'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
                           ),
                           fit: BoxFit.cover,
                         ),
@@ -342,7 +346,7 @@ class HomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Text(
-                          'Placeholder Hero Title',
+                          'Clothing collection',
                           style: TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
@@ -352,7 +356,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
                         const Text(
-                          "This is placeholder text for the hero section.",
+                          "Discover our latest clothing collection.",
                           style: TextStyle(
                             fontSize: 20,
                             color: Colors.white,
@@ -362,7 +366,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 32),
                         ElevatedButton(
-                          onPressed: placeholderCallbackForButtons,
+                          onPressed: ()=> navigateToClothingCollections(context),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF4d2963),
                             foregroundColor: Colors.white,
@@ -390,6 +394,92 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     const Text(
+                      'Clothing Section',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        letterSpacing: 1,
+                      ),
+                    ),
+                    const SizedBox(height: 48),
+                    GridView.count(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      crossAxisCount:
+                          MediaQuery.of(context).size.width > 600 ? 2 : 1,
+                      crossAxisSpacing: 20,
+                      mainAxisSpacing: 35,
+                      children: const [
+                        ProductCard(
+                          title: 'Jumper Purple',
+                          price: '£15.00',
+                          salePrice: null,
+                          imageUrl:
+                              'https://shop.upsu.net/cdn/shop/files/PurpleHoodieFinal.jpg?v=1742201957',
+                        ),
+                        ProductCard(
+                          title: 'Jumper White',
+                          price: '£20.00',
+                          salePrice: null,
+                          imageUrl:
+                              'https://shop.upsu.net/cdn/shop/files/Ivory_Hoodie_1024x1024@2x.png?v=1745583522',
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(40.0),
+                child: Column(
+                  children: [
+                    const Text(
+                      'Sale Section',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        letterSpacing: 1,
+                      ),
+                    ),
+                    const SizedBox(height: 48),
+                    GridView.count(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      crossAxisCount:
+                          MediaQuery.of(context).size.width > 600 ? 2 : 1,
+                      crossAxisSpacing: 20,
+                      mainAxisSpacing: 35,
+                      children: const [
+                        ProductCard(
+                          title: 'Notepad & pen set',
+                          price: '£15.00',
+                          salePrice: '£10.00',
+                          imageUrl:
+                              'https://makingmeadows.co.uk/cdn/shop/products/Lined-Notepad-With-Tear-Off-Pages.jpg?v=1761749009',
+                        ),
+                        ProductCard(
+                          title: 'Single Black Pen',
+                          price: '£5.00',
+                          salePrice: '£2.50',
+                          imageUrl:
+                              'https://www.eduzone.co.uk/cdn/shop/files/35769.jpg?v=1763042238',
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(40.0),
+                child: Column(
+                  children: [
+                    const Text(
                       'PRODUCTS SECTION',
                       style: TextStyle(
                         fontSize: 20,
@@ -409,24 +499,28 @@ class HomeScreen extends StatelessWidget {
                         ProductCard(
                           title: 'Placeholder Product 1',
                           price: '£10.00',
+                          salePrice: null,
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
                         ),
                         ProductCard(
                           title: 'Placeholder Product 2',
                           price: '£15.00',
+                          salePrice: null,
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
                         ),
                         ProductCard(
                           title: 'Placeholder Product 3',
                           price: '£20.00',
+                          salePrice: null,
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
                         ),
                         ProductCard(
                           title: 'Placeholder Product 4',
                           price: '£25.00',
+                          salePrice: null,
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
                         ),
@@ -598,12 +692,14 @@ class ProductCard extends StatelessWidget {
   final String title;
   final String price;
   final String imageUrl;
+  final String? salePrice;
 
   const ProductCard({
     super.key,
     required this.title,
     required this.price,
     required this.imageUrl,
+    required this.salePrice,
   });
 
   @override
@@ -629,24 +725,61 @@ class ProductCard extends StatelessWidget {
               },
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 4),
-              Text(
-                title,
-                style: const TextStyle(fontSize: 14, color: Colors.black),
-                maxLines: 2,
+
+          Padding(
+            padding: const EdgeInsets.fromLTRB(8, 6, 8, 6),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(height: 4),
+                  Text(
+                    title,
+                    style: const TextStyle(fontSize: 14, color: Colors.black),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 4),
+                  // Show original (struck-through) and optional sale price beside it.
+                  // The original price is wrapped in Expanded so it can use available width.
+                  if (salePrice != null)
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            price,
+                            style: const TextStyle(
+                              fontSize: 13,
+                              color: Colors.grey,
+                              decoration: TextDecoration.lineThrough,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          salePrice!,
+                          style: const TextStyle(
+                            fontSize: 13,
+                            color: Colors.redAccent,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    )
+                  else
+                    Text(
+                      price,
+                      style: const TextStyle(
+                        fontSize: 13,
+                        color: Colors.grey,
+                      ),
+                    ),
+                ],
               ),
-              const SizedBox(height: 4),
-              Text(
-                price,
-                style: const TextStyle(fontSize: 13, color: Colors.grey),
-              ),
-            ],
-          ),
-        ],
-      ),
+          )],
+          )
     );
   }
 }
+
