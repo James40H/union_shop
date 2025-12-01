@@ -308,7 +308,7 @@ class CollectionsPage extends StatelessWidget {
                         height: 220,
                         width: double.infinity,
                         title: 'Sale',
-                        onTap: placeholderCallbackForButtons,
+                        onTap: () => navigateToSale(context),
                       ),
                     ],
                   );
@@ -339,7 +339,7 @@ class CollectionsPage extends StatelessWidget {
                         height: 300,
                         width: 300,
                         title: 'Sale',
-                        onTap: placeholderCallbackForButtons,
+                        onTap: () => navigateToSale(context),
                       ),
                     ],
                   );
