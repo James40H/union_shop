@@ -325,7 +325,7 @@ void navigateToHome(BuildContext context) {
 
                   // Product name
                   const Text(
-                    'Placeholder Product Name',
+                    'Portsmouth City Magnet',
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
