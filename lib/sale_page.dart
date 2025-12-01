@@ -24,6 +24,9 @@ class SalePage extends StatelessWidget {
   void navigateToSale(BuildContext context) {
     Navigator.pushNamed(context, '/collections/sale');
   }
+  void navigateToLogin(BuildContext context) {
+    Navigator.pushNamed(context, '/login');
+  }
 
   void placeholderCallbackForButtons() {
     // This is the event handler for buttons that don't work yet
@@ -193,7 +196,7 @@ class SalePage extends StatelessWidget {
                                       minWidth: 32,
                                       minHeight: 32,
                                     ),
-                                    onPressed: placeholderCallbackForButtons,
+                                    onPressed: () => navigateToLogin(context),
                                   ),
                                   IconButton(
                                     icon: const Icon(

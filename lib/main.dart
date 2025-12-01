@@ -232,7 +232,7 @@ class HomeScreen extends StatelessWidget {
                                       minWidth: 32,
                                       minHeight: 32,
                                     ),
-                                    onPressed: placeholderCallbackForButtons,
+                                    onPressed: () => navigateToLogin(context),
                                   ),
                                   IconButton(
                                     icon: const Icon(

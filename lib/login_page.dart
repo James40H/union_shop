@@ -35,6 +35,10 @@ class _LoginPageState extends State<LoginPage> {
     Navigator.pushNamed(context, '/collections/sale');
   }
 
+  void navigateToLogin(BuildContext context) {
+  Navigator.pushNamed(context, '/login');
+  }
+
   void placeholderCallbackForButtons() {
     // placeholder
   }
@@ -216,7 +220,7 @@ class _LoginPageState extends State<LoginPage> {
                                       minWidth: 32,
                                       minHeight: 32,
                                     ),
-                                    onPressed: placeholderCallbackForButtons,
+                                    onPressed:() => navigateToLogin(context),
                                   ),
                                   IconButton(
                                     icon: const Icon(
