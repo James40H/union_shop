@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 
-class ProductPage extends StatelessWidget {
+class ProductPage extends StatefulWidget {
   const ProductPage({super.key});
 
-void navigateToHome(BuildContext context) {
+  @override
+  State<ProductPage> createState() => _ProductPageState();
+}
+
+class _ProductPageState extends State<ProductPage> {
+  String? _selectedSize;
+  final List<String> _sizes = ['Small', 'Medium', 'Large', 'XL'];
+
+  void navigateToHome(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
   }
 
@@ -31,7 +39,6 @@ void navigateToHome(BuildContext context) {
     // This is the event handler for buttons that don't work yet
   }
 
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +78,7 @@ void navigateToHome(BuildContext context) {
                               },
                               child: Image.network(
                                 'https://shop.upsu.net/cdn/shop/files/upsu_300x300.png?v=1614735854',
-                                height: isMobile ? 30 : 30, // slightly larger logo on mobile
+                                height: isMobile ? 30 : 30,
                                 fit: BoxFit.cover,
                                 errorBuilder: (context, error, stackTrace) {
                                   return Container(
@@ -93,8 +100,6 @@ void navigateToHome(BuildContext context) {
                                 child: LayoutBuilder(builder: (context, constraints) {
                                   final isMobileInner = constraints.maxWidth < 600;
                                   if (isMobileInner) {
-                                    // On mobile we move the menu into the right-hand menu icon,
-                                    // so render nothing here to keep the header compact.
                                     return const SizedBox.shrink();
                                   } else {
                                     return Row(
@@ -210,8 +215,6 @@ void navigateToHome(BuildContext context) {
                                     ),
                                     onPressed: placeholderCallbackForButtons,
                                   ),
-                                  // On narrow screens show the popup menu from the menu icon.
-                                  // On wider screens keep a plain icon button (or use it later).
                                   isMobile
                                       ? PopupMenuButton<String>(
                                           icon: const Icon(
@@ -364,6 +367,31 @@ void navigateToHome(BuildContext context) {
                       color: Colors.grey,
                       height: 1.5,
                     ),
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  // Size dropdown (mobile-friendly full width)
+                  DropdownButtonFormField<String>(
+                    value: _selectedSize,
+                    decoration: const InputDecoration(
+                      labelText: 'Size',
+                      isDense: true,
+                      contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                      border: OutlineInputBorder(),
+                    ),
+                    items: _sizes
+                        .map((s) => DropdownMenuItem<String>(
+                              value: s,
+                              child: Text(s),
+                            ))
+                        .toList(),
+                    onChanged: (val) {
+                      setState(() {
+                        _selectedSize = val;
+                      });
+                    },
+                    hint: const Text('Select size'),
                   ),
 
                   const SizedBox(height: 24),
