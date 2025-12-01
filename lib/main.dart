@@ -497,32 +497,32 @@ class HomeScreen extends StatelessWidget {
                       mainAxisSpacing: 48,
                       children: const [
                         ProductCard(
-                          title: 'Placeholder Product 1',
+                          title: 'Portsmouth City Postcard',
                           price: '£10.00',
                           salePrice: null,
                           imageUrl:
-                              'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                              'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
                         ),
                         ProductCard(
-                          title: 'Placeholder Product 2',
+                          title: 'Portsmouth City Magnet',
                           price: '£15.00',
                           salePrice: null,
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
                         ),
                         ProductCard(
-                          title: 'Placeholder Product 3',
+                          title: 'Portsmouth City Bookmark',
                           price: '£20.00',
                           salePrice: null,
                           imageUrl:
-                              'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                              'https://shop.upsu.net/cdn/shop/files/PortsmouthCityBookmark1_1024x1024@2x.jpg?v=1752230004',
                         ),
                         ProductCard(
-                          title: 'Placeholder Product 4',
+                          title: 'Portsmouth City Notebook',
                           price: '£25.00',
                           salePrice: null,
                           imageUrl:
-                              'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                              'https://shop.upsu.net/cdn/shop/files/PortsmouthCityNotebook_1024x1024@2x.jpg?v=1757419215',
                         ),
                       ],
                     ),
