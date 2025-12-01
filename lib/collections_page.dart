@@ -276,72 +276,145 @@ class CollectionsPage extends StatelessWidget {
             }),
 
             const SizedBox(height: 24),
-            // Row of images (title sits above these)
+
+            // Responsive collections: stacked vertically on mobile, in a row on wider screens.
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ImageTextBox(
-                    imageUrl: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=300&auto=format&fit=crop',
-                    height: 300,
-                    width: 300,
-                    title: 'Winter Collection',
-                    onTap: placeholderCallbackForButtons,
-                  ),
-                  const SizedBox(width: 16),
-                  ImageTextBox(
-                    imageUrl: 'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
-                    height: 300,
-                    width: 300,
-                    title: 'Clothing',
-                    onTap: () => navigateToClothingCollection(context),
-                  ),
-                  const SizedBox(width: 16),
-                  ImageTextBox(
-                    imageUrl: 'assets/images/blue_t-shirt.jpg',
-                    height: 300,
-                    width: 300,
-                    title: 'Sale',
-                    onTap: placeholderCallbackForButtons,
-                  ),
-                ],
-              ),
+              child: LayoutBuilder(builder: (context, constraints) {
+                final isMobile = constraints.maxWidth < 600;
+                if (isMobile) {
+                  // Column layout for mobile: one above each other, full width
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ImageTextBox(
+                        imageUrl: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=300&auto=format&fit=crop',
+                        height: 220,
+                        width: double.infinity,
+                        title: 'Winter Collection',
+                        onTap: placeholderCallbackForButtons,
+                      ),
+                      const SizedBox(height: 16),
+                      ImageTextBox(
+                        imageUrl: 'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
+                        height: 220,
+                        width: double.infinity,
+                        title: 'Clothing',
+                        onTap: () => navigateToClothingCollection(context),
+                      ),
+                      const SizedBox(height: 16),
+                      ImageTextBox(
+                        imageUrl: 'https://phabcart.imgix.net/cdn/scdn/images/uploads/89042D1_WEB_600.jpg?auto=compress&lossless=1&w=385',
+                        height: 220,
+                        width: double.infinity,
+                        title: 'Sale',
+                        onTap: placeholderCallbackForButtons,
+                      ),
+                    ],
+                  );
+                } else {
+                  // Row layout for wider screens (keep original look)
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ImageTextBox(
+                        imageUrl: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=300&auto=format&fit=crop',
+                        height: 300,
+                        width: 300,
+                        title: 'Winter Collection',
+                        onTap: placeholderCallbackForButtons,
+                      ),
+                      const SizedBox(width: 16),
+                      ImageTextBox(
+                        imageUrl: 'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
+                        height: 300,
+                        width: 300,
+                        title: 'Clothing',
+                        onTap: () => navigateToClothingCollection(context),
+                      ),
+                      const SizedBox(width: 16),
+                      ImageTextBox(
+                        imageUrl: 'https://phabcart.imgix.net/cdn/scdn/images/uploads/89042D1_WEB_600.jpg?auto=compress&lossless=1&w=385',
+                        height: 300,
+                        width: 300,
+                        title: 'Sale',
+                        onTap: placeholderCallbackForButtons,
+                      ),
+                    ],
+                  );
+                }
+              }),
             ),
+
             // extra gap between the two rows of collections
             const SizedBox(height: 24),
+
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ImageTextBox(
-                    imageUrl: 'assets/images/blue_t-shirt.jpg',
-                    height: 300,
-                    width: 300,
-                    title: 'T-Shirts',
-                    onTap: placeholderCallbackForButtons,
-                  ),
-                  const SizedBox(width: 16),
-                  ImageTextBox(
-                    imageUrl: 'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
-                    height: 300,
-                    width: 300,
-                    title: 'Specials',
-                    onTap: placeholderCallbackForButtons,
-                  ),
-                  const SizedBox(width: 16),
-                  ImageTextBox(
-                    imageUrl: 'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
-                    height: 300,
-                    width: 300,
-                    title: 'Black Friday Deals',
-                    onTap: placeholderCallbackForButtons,
-                  ),
-                ],
-              ),
+              child: LayoutBuilder(builder: (context, constraints) {
+                final isMobile = constraints.maxWidth < 600;
+                if (isMobile) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ImageTextBox(
+                        imageUrl: 'assets/images/blue_t-shirt.jpg',
+                        height: 220,
+                        width: double.infinity,
+                        title: 'T-Shirts',
+                        onTap: placeholderCallbackForButtons,
+                      ),
+                      const SizedBox(height: 16),
+                      ImageTextBox(
+                        imageUrl: 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/limited-edition-logo-design-template-4dddb09784da781fc6b894711fcf1f11_screen.jpg?ts=1681027930',
+                        height: 220,
+                        width: double.infinity,
+                        title: 'Limited Editions',
+                        onTap: placeholderCallbackForButtons,
+                      ),
+                      const SizedBox(height: 16),
+                      ImageTextBox(
+                        imageUrl: 'https://www.worldofwallpaper.com/media/Black-Friday-WOW.jpg',
+                        height: 220,
+                        width: double.infinity,
+                        title: 'Black Friday Deals',
+                        onTap: placeholderCallbackForButtons,
+                      ),
+                    ],
+                  );
+                } else {
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ImageTextBox(
+                        imageUrl: 'assets/images/blue_t-shirt.jpg',
+                        height: 300,
+                        width: 300,
+                        title: 'T-Shirts',
+                        onTap: placeholderCallbackForButtons,
+                      ),
+                      const SizedBox(width: 16),
+                      ImageTextBox(
+                        imageUrl: 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/limited-edition-logo-design-template-4dddb09784da781fc6b894711fcf1f11_screen.jpg?ts=1681027930',
+                        height: 300,
+                        width: 300,
+                        title: 'Limited Editions',
+                        onTap: placeholderCallbackForButtons,
+                      ),
+                      const SizedBox(width: 16),
+                      ImageTextBox(
+                        imageUrl: 'https://www.worldofwallpaper.com/media/Black-Friday-WOW.jpg',
+                        height: 300,
+                        width: 300,
+                        title: 'Black Friday Deals',
+                        onTap: placeholderCallbackForButtons,
+                      ),
+                    ],
+                  );
+                }
+              }),
             ),
             
            // Footer / info
