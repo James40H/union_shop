@@ -365,6 +365,26 @@ void navigateToHome(BuildContext context) {
                       height: 1.5,
                     ),
                   ),
+
+                  const SizedBox(height: 24),
+
+                  // Add to cart button (matches page colour, no action)
+                  SizedBox(
+                    width: double.infinity,
+                    height: 48,
+                    child: ElevatedButton(
+                      onPressed: placeholderCallbackForButtons, // intentionally does nothing
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF4d2963),
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                      ),
+                      child: const Text(
+                        'Add to cart',
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
