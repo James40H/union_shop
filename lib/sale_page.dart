@@ -280,7 +280,7 @@ class SalePage extends StatelessWidget {
                 child: Column(
                   children: [
                     const Text(
-                      'Jumpers & Hoodies',
+                      'Sale',
                       style: TextStyle(
                         fontSize: 20,
                         color: Colors.black,
@@ -297,28 +297,28 @@ class SalePage extends StatelessWidget {
                       childAspectRatio: 0.75, // tighter aspect to reduce extra vertical white space
                       children: const [
                         ProductCard(
+                          title: 'Sale Notebook',
+                          price: '£15.00',     // original
+                          salePrice: '£10.00',  // current/sale price shown next to it
+                          imageUrl:
+                              'https://makingmeadows.co.uk/cdn/shop/products/Lined-Notepad-With-Tear-Off-Pages.jpg?v=1761749009',
+                        ),
+                        ProductCard(
+                          title: 'Sale Pen',
+                          price: '£5.00',
+                          salePrice: '£2.50',
+                          imageUrl:
+                              'https://www.eduzone.co.uk/cdn/shop/files/35769.jpg?v=1763042238',
+                        ),
+                        ProductCard(
                           title: 'Sale Jumper 1',
-                          price: '£25.00',     // original
-                          salePrice: '£5.00',  // current/sale price shown next to it
-                          imageUrl:
-                              'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
-                        ),
-                        ProductCard(
-                          title: 'Sale Jumper 2',
-                          price: '£35.00',
-                          salePrice: '£15.00',
-                          imageUrl:
-                              'https://shop.upsu.net/cdn/shop/files/PurpleHoodieFinal.jpg?v=1742201957',
-                        ),
-                        ProductCard(
-                          title: 'Sale Jumper 3',
                           price: '£20.00',
                           salePrice: '£10.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/Ivory_Hoodie_1024x1024@2x.png?v=1745583522',
                         ),
                         ProductCard(
-                          title: 'Sale Jumper 4',
+                          title: 'Sale Jumper 2',
                           price: '£25.00',
                           salePrice: '£5.00',
                           imageUrl:
