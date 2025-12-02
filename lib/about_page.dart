@@ -1,5 +1,15 @@
 import 'package:flutter/material.dart';
 
+// Keys for tests & widget identification
+const Key headerHomeKey = Key('header_home');
+const Key headerShopKey = Key('header_shop');
+const Key headerPrintShackKey = Key('header_print_shack');
+const Key headerSaleKey = Key('header_sale');
+const Key headerAboutKey = Key('header_about');
+
+const Key footerSearchKey = Key('footer_search');
+const Key footerTermsKey = Key('footer_terms');
+
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
 
@@ -63,205 +73,51 @@ class AboutPage extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
+                            // logo (tap -> home)
                             GestureDetector(
-                              onTap: () {
-                                navigateToHome(context);
-                              },
-                              child: Image.network(
-                                'https://shop.upsu.net/cdn/shop/files/upsu_300x300.png?v=1614735854',
-                                height: isMobile ? 30 : 30, // slightly larger logo on mobile
-                                fit: BoxFit.cover,
-                                errorBuilder: (context, error, stackTrace) {
-                                  return Container(
-                                    color: Colors.grey[300],
-                                    width: 18,
-                                    height: 18,
-                                    child: const Center(
-                                      child: Icon(Icons.image_not_supported,
-                                          color: Colors.grey),
-                                    ),
-                                  );
-                                },
+                              onTap: () => navigateToHome(context),
+                              child: Image.asset(
+                                'assets/logo.png',
+                                width: 120,
+                                height: 60,
+                                fit: BoxFit.contain,
                               ),
                             ),
-                            const SizedBox(width: 12),
-                            // Centered header buttons
-                            Expanded(
-                              child: Center(
-                                child: LayoutBuilder(builder: (context, constraints) {
-                                  final isMobileInner = constraints.maxWidth < 600;
-                                  if (isMobileInner) {
-                                    // On mobile we move the menu into the right-hand menu icon,
-                                    // so render nothing here to keep the header compact.
-                                    return const SizedBox.shrink();
-                                  } else {
-                                    return Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        TextButton(
-                                          onPressed: () => navigateToHome(context),
-                                          style: TextButton.styleFrom(
-                                            foregroundColor: Colors.black,
-                                            padding: const EdgeInsets.symmetric(horizontal: 12),
-                                            minimumSize: const Size(0, 36),
-                                          ),
-                                          child: const Text(
-                                            'Home',
-                                            style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                          ),
-                                        ),
-                                        TextButton(
-                                          onPressed: () => navigateToCollections(context),
-                                          style: TextButton.styleFrom(
-                                            foregroundColor: Colors.black,
-                                            padding: const EdgeInsets.symmetric(horizontal: 12),
-                                            minimumSize: const Size(0, 36),
-                                          ),
-                                          child: const Text(
-                                            'SHOP',
-                                            style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                          ),
-                                        ),
-                                        TextButton(
-                                          onPressed: placeholderCallbackForButtons,
-                                          style: TextButton.styleFrom(
-                                            foregroundColor: Colors.black,
-                                            padding: const EdgeInsets.symmetric(horizontal: 12),
-                                            minimumSize: const Size(0, 36),
-                                          ),
-                                          child: const Text(
-                                            'The Print Shack',
-                                            style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                          ),
-                                        ),
-                                        TextButton(
-                                          onPressed: () => navigateToSale(context),
-                                          style: TextButton.styleFrom(
-                                            foregroundColor: Colors.black,
-                                            padding: const EdgeInsets.symmetric(horizontal: 12),
-                                            minimumSize: const Size(0, 36),
-                                          ),
-                                          child: const Text(
-                                            'SALE!',
-                                            style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                          ),
-                                        ),
-                                        TextButton(
-                                          onPressed: () => navigateToAbout(context),
-                                          style: TextButton.styleFrom(
-                                            foregroundColor: Colors.black,
-                                            padding: const EdgeInsets.symmetric(horizontal: 12),
-                                            minimumSize: const Size(0, 36),
-                                          ),
-                                          child: const Text(
-                                            'About',
-                                            style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                          ),
-                                        ),
-                                      ],
-                                    );
-                                  }
-                                }),
-                              ),
+
+                            const Spacer(),
+
+                            // Header buttons with keys for tests
+                            TextButton(
+                              key: headerHomeKey,
+                              onPressed: () => navigateToHome(context),
+                              child: const Text('Home'),
                             ),
-                            ConstrainedBox(
-                              constraints: const BoxConstraints(maxWidth: 600),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  IconButton(
-                                    icon: const Icon(
-                                      Icons.search,
-                                      size: 18,
-                                      color: Colors.grey,
-                                    ),
-                                    padding: const EdgeInsets.all(8),
-                                    constraints: const BoxConstraints(
-                                      minWidth: 32,
-                                      minHeight: 32,
-                                    ),
-                                    onPressed: placeholderCallbackForButtons,
-                                  ),
-                                  IconButton(
-                                    icon: const Icon(
-                                      Icons.person_outline,
-                                      size: 18,
-                                      color: Colors.grey,
-                                    ),
-                                    padding: const EdgeInsets.all(8),
-                                    constraints: const BoxConstraints(
-                                      minWidth: 32,
-                                      minHeight: 32,
-                                    ),
-                                    onPressed: () => navigateToLogin(context),
-                                  ),
-                                  IconButton(
-                                    icon: const Icon(
-                                      Icons.shopping_bag_outlined,
-                                      size: 18,
-                                      color: Colors.grey,
-                                    ),
-                                    padding: const EdgeInsets.all(8),
-                                    constraints: const BoxConstraints(
-                                      minWidth: 32,
-                                      minHeight: 32,
-                                    ),
-                                    onPressed: placeholderCallbackForButtons,
-                                  ),
-                                  // On narrow screens show the popup menu from the menu icon.
-                                  // On wider screens keep a plain icon button (or use it later).
-                                  isMobile
-                                      ? PopupMenuButton<String>(
-                                          icon: const Icon(
-                                            Icons.menu,
-                                            size: 18,
-                                            color: Colors.grey,
-                                          ),
-                                          padding: const EdgeInsets.all(8),
-                                          onSelected: (value) {
-                                            switch (value) {
-                                              case 'home':
-                                                navigateToHome(context);
-                                                break;
-                                              case 'shop':
-                                                navigateToCollections(context);
-                                                break;
-                                              case 'print_shack':
-                                                placeholderCallbackForButtons();
-                                                break;
-                                              case 'sale':
-                                                navigateToSale(context);
-                                                break;
-                                              case 'about':
-                                                navigateToAbout(context);
-                                                break;
-                                            }
-                                          },
-                                          itemBuilder: (ctx) => const [
-                                            PopupMenuItem(value: 'home', child: Text('Home')),
-                                            PopupMenuItem(value: 'shop', child: Text('SHOP')),
-                                            PopupMenuItem(value: 'print_shack', child: Text('The Print Shack')),
-                                            PopupMenuItem(value: 'sale', child: Text('SALE!')),
-                                            PopupMenuItem(value: 'about', child: Text('About')),
-                                          ],
-                                        )
-                                      : IconButton(
-                                          icon: const Icon(
-                                            Icons.menu,
-                                            size: 18,
-                                            color: Colors.grey,
-                                          ),
-                                          padding: const EdgeInsets.all(8),
-                                          constraints: const BoxConstraints(
-                                            minWidth: 32,
-                                            minHeight: 32,
-                                          ),
-                                          onPressed: placeholderCallbackForButtons,
-                                        ),
-                                ],
-                              ),
+                            TextButton(
+                              key: headerShopKey,
+                              onPressed: () => navigateToCollections(context),
+                              child: const Text('SHOP'),
+                            ),
+                            TextButton(
+                              key: headerPrintShackKey,
+                              onPressed: placeholderCallbackForButtons,
+                              child: const Text('The Print Shack'),
+                            ),
+                            TextButton(
+                              key: headerSaleKey,
+                              onPressed: () => navigateToSale(context),
+                              child: const Text('SALE!'),
+                            ),
+                            TextButton(
+                              key: headerAboutKey,
+                              onPressed: () => navigateToAbout(context),
+                              child: const Text('About'),
+                            ),
+
+                            // account icon
+                            IconButton(
+                              onPressed: () => navigateToLogin(context),
+                              icon: const Icon(Icons.person_outline),
                             ),
                           ],
                         ),
@@ -415,10 +271,12 @@ The Union Shop & Reception Team''',
                         ),
                         const SizedBox(height: 8),
                         TextButton(
+                          key: footerSearchKey,
                           onPressed: placeholderCallbackForButtons,
                           child: const Text('Search'),
                         ),
                         TextButton(
+                          key: footerTermsKey,
                           onPressed: placeholderCallbackForButtons,
                           child: const Text('Terms & Conditions of Sale Policy'),
                         ),
