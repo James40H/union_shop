@@ -93,29 +93,56 @@ void main() {
     testWidgets('AboutPage has Main header Search button', (WidgetTester tester) async {
 
       const  headerSearchKey = Key('header_search');
+      
       // Render the real AboutPage so header buttons are created.
-
       await tester.pumpWidget(const MaterialApp(key: headerSearchKey, home: AboutPage()));
 
       // There should be one or more TextButton widgets (header/footer).
       //expect(find.byType(Icon), findsWidgets);
 
       // Assert header buttons are present using keys.
-      expect(find.byKey(headerSearchKey), findsWidgets);
+      expect(find.byKey(headerSearchKey), findsOneWidget);
     });
-    testWidgets('AboutPage has Main header Search button', (WidgetTester tester) async {
+    testWidgets('AboutPage has Main header Login button', (WidgetTester tester) async {
 
       const  headerLoginKey = Key('header_login');
       // Render the real AboutPage so header buttons are created.
 
-      await tester.pumpWidget(const MaterialApp(key: headerSearchKey, home: AboutPage()));
+      await tester.pumpWidget(const MaterialApp(key: headerLoginKey, home: AboutPage()));
 
       // There should be one or more TextButton widgets (header/footer).
       //expect(find.byType(Icon), findsWidgets);
 
       // Assert header buttons are present using keys.
-      expect(find.byKey(headerSearchKey), findsWidgets);
+      expect(find.byKey(headerLoginKey), findsOneWidget);
     });
+    testWidgets('AboutPage has Main header Cart button', (WidgetTester tester) async {
+
+      const  headerCartKey = Key('header_cart');
+      // Render the real AboutPage so header buttons are created.
+
+      await tester.pumpWidget(const MaterialApp(key: headerCartKey, home: AboutPage()));
+
+      // There should be one or more TextButton widgets (header/footer).
+      //expect(find.byType(Icon), findsWidgets);
+
+      // Assert header buttons are present using keys.
+      expect(find.byKey(headerCartKey), findsOneWidget);
+    });
+    testWidgets('AboutPage has Main header menu button', (WidgetTester tester) async {
+
+      const  headermenuKey = Key('header_menu');
+      // Render the real AboutPage so header buttons are created.
+
+      await tester.pumpWidget(const MaterialApp(key: headermenuKey, home: AboutPage()));
+
+      // There should be one or more TextButton widgets (header/footer).
+      //expect(find.byType(Icon), findsWidgets);
+
+      // Assert header buttons are present using keys.
+      expect(find.byKey(headermenuKey), findsOneWidget);
+    });
+    
     
   });
 
@@ -141,4 +168,41 @@ Happy shopping!
 
 The Union Shop & Reception Team'''), findsOneWidget);
   });
+  testWidgets('AboutPage has a footer message', (WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(home: AboutPage()));
+
+    // Verify that the footer message is present
+    expect(find.text('Opening Hours'), findsOneWidget);
+    expect(find.text('❄️ Winter Break Closure Dates ❄️'), findsOneWidget);
+    expect(find.text('Closing 4pm 19/12/2025'), findsOneWidget);
+    expect(find.text('Reopening 10am 05/01/2026'), findsOneWidget);
+    expect(find.text('Last post date: 12pm on 18/12/2025'), findsOneWidget);
+    expect(find.text('------------------------'), findsOneWidget);
+    expect(find.text('(Term Time)'), findsOneWidget);
+    expect(find.text('Monday - Friday 10am - 4pm'), findsOneWidget);
+    expect(find.text('(Outside of Term Time / Consolidation Weeks)'), findsOneWidget);
+    expect(find.text('Monday - Friday 10am - 3pm'), findsOneWidget);
+    expect(find.text('Purchase online 24/7'), findsOneWidget);
+  });
+
+  testWidgets('AboutPage has a footer message', (WidgetTester tester) async {
+    const Key footerSearchKey = Key('footer_search');
+    const Key footerTermsKey = Key('footer_terms');
+    await tester.pumpWidget(const MaterialApp(home: AboutPage()));
+
+    // Verify that the footer message is present
+    expect(find.text('Help and Information'), findsOneWidget);
+    expect(find.byKey(footerSearchKey), findsOneWidget);
+    expect(find.byKey(footerTermsKey), findsOneWidget);
+  });
+  testWidgets('AboutPage has a footer email entry and button', (WidgetTester tester) async {
+    const Key footerEmailKey = Key('footer_email');
+    const Key footerEmailEntryKey = Key('footer_email_entry'); 
+    await tester.pumpWidget(const MaterialApp(home: AboutPage()));
+
+    // Verify that the footer email button is present
+    expect(find.byKey(footerEmailKey), findsOneWidget);
+    expect(find.byKey(footerEmailEntryKey), findsOneWidget);
+  });
+
 }
