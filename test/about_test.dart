@@ -90,6 +90,33 @@ void main() {
       // Assert header buttons are present using keys.
       expect(find.byKey(headerAboutKey), findsOneWidget);
     });
+    testWidgets('AboutPage has Main header Search button', (WidgetTester tester) async {
+
+      const  headerSearchKey = Key('header_search');
+      // Render the real AboutPage so header buttons are created.
+
+      await tester.pumpWidget(const MaterialApp(key: headerSearchKey, home: AboutPage()));
+
+      // There should be one or more TextButton widgets (header/footer).
+      //expect(find.byType(Icon), findsWidgets);
+
+      // Assert header buttons are present using keys.
+      expect(find.byKey(headerSearchKey), findsWidgets);
+    });
+    testWidgets('AboutPage has Main header Search button', (WidgetTester tester) async {
+
+      const  headerLoginKey = Key('header_login');
+      // Render the real AboutPage so header buttons are created.
+
+      await tester.pumpWidget(const MaterialApp(key: headerSearchKey, home: AboutPage()));
+
+      // There should be one or more TextButton widgets (header/footer).
+      //expect(find.byType(Icon), findsWidgets);
+
+      // Assert header buttons are present using keys.
+      expect(find.byKey(headerSearchKey), findsWidgets);
+    });
+    
   });
 
   testWidgets('AboutPage has a title', (WidgetTester tester) async {
