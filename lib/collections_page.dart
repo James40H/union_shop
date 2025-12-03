@@ -46,7 +46,7 @@ class CollectionsPage extends StatelessWidget {
     // This is the event handler for buttons that don't work yet
   }
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
