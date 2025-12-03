@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+const Key headerImageKey = Key('header_image');
 const Key headerHomeKey = Key('header_home');
 const Key headerShopKey = Key('header_shop');
 const Key headerPrintShackKey = Key('header_print_shack');
@@ -114,6 +115,7 @@ class _ClothingCollectionPageState extends State<ClothingCollectionPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             GestureDetector(
+                              key: headerImageKey,
                               onTap: () {
                                 navigateToHome(context);
                               },
