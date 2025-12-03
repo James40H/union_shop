@@ -151,6 +151,18 @@ void main() {
     expect(find.text('Jumpers & Hoodies'), findsOneWidget);
   });
 
+  testWidgets('ClothingCollectionPage has a filter', (WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(home: ClothingCollectionPage()));
+
+    // Verify that the filter is present
+    expect(find.text('All'), findsOneWidget);
+    expect(find.text('Hoodies'), findsOneWidget);
+    expect(find.text('Jumpers'), findsOneWidget);
+    expect(find.text('T-Shirts'), findsOneWidget);
+    expect(find.text('Sale'), findsOneWidget);
+  });
+
+  
 
 
   testWidgets('ClothingCollectionPage has a footer message', (WidgetTester tester) async {
