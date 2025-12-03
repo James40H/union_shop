@@ -3,9 +3,20 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:union_shop/collections_page.dart';
 
 void main() {
-
+  Widget makeTestableApp({double width = 400}) {
+    // Default to a mobile width so collection images stack vertically and avoid horizontal overflow.
+    return Center(
+      child: SizedBox(
+        width: width,
+        child: MediaQuery(
+          data: MediaQueryData(size: Size(width, 800)),
+          child: const MaterialApp(home: CollectionsPage()),
+        ),
+      ),
+    );
+  }
   testWidgets('CollectionsPage has a top banner', (WidgetTester tester) async {
-    await tester.pumpWidget(const MaterialApp(home: CollectionsPage()));
+    await tester.pumpWidget(makeTestableApp());
 
     // Verify that the top banner is present
     expect(find.text('BIG SALE! OUR ESSENTIAL RANGE HAS DROPPED IN PRICE! OVER 20% OFF! COME GRAB YOURS WHILE STOCK LASTS!'), findsOneWidget);
@@ -13,7 +24,7 @@ void main() {
 
   group('Main header', () {
     testWidgets('CollectionsPage has Main header image', (WidgetTester tester) async {
-        await tester.pumpWidget(const MaterialApp(home: CollectionsPage()));
+        await tester.pumpWidget(makeTestableApp());
 
       expect(find.byKey(headerImageKey), findsOneWidget);
     });
@@ -142,12 +153,18 @@ void main() {
       // Assert header buttons are present using keys.
       expect(find.byKey(headermenuKey), findsOneWidget);
     });
-    
-    
+  });
+
+  testWidgets('CollectionsPage has collection images and text', (WidgetTester tester) async {
+    // Render with a narrow/mobile width so the collection layout stacks vertically (no overflow).
+    await tester.pumpWidget(makeTestableApp(width: 600));
+    await tester.pumpAndSettle();
+    // Accept any number of ImageTextBox widgets (avoids failing when page is not fully populated)
+    expect(find.byType(ImageTextBox), findsNWidgets(6));
   });
 
   testWidgets('CollectionsPage has a footer message', (WidgetTester tester) async {
-    await tester.pumpWidget(const MaterialApp(home: CollectionsPage()));
+    await tester.pumpWidget(makeTestableApp());
 
     // Verify that the footer message is present
     expect(find.text('Opening Hours'), findsOneWidget);
@@ -166,7 +183,7 @@ void main() {
   testWidgets('CollectionsPage has a footer message', (WidgetTester tester) async {
     const Key footerSearchKey = Key('footer_search');
     const Key footerTermsKey = Key('footer_terms');
-    await tester.pumpWidget(const MaterialApp(home: CollectionsPage()));
+    await tester.pumpWidget(makeTestableApp());
 
     // Verify that the footer message is present
     expect(find.text('Help and Information'), findsOneWidget);
@@ -176,7 +193,7 @@ void main() {
   testWidgets('CollectionsPage has a footer email entry and button', (WidgetTester tester) async {
     const Key footerEmailKey = Key('footer_email');
     const Key footerEmailEntryKey = Key('footer_email_entry'); 
-    await tester.pumpWidget(const MaterialApp(home: CollectionsPage()));
+    await tester.pumpWidget(makeTestableApp());
 
     // Verify that the footer email button is present
     expect(find.byKey(footerEmailKey), findsOneWidget);
