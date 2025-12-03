@@ -81,7 +81,7 @@ class _ClothingCollectionPageState extends State<ClothingCollectionPage> {
     });
   }
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
