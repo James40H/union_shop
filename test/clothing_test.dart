@@ -162,7 +162,14 @@ void main() {
     expect(find.text('Sale'), findsOneWidget);
   });
 
-  
+  testWidgets('ClothingCollectionPage has 4 item image', (WidgetTester tester) async {
+    //const itemImageKey = Key('item_image');
+    await tester.pumpWidget(const MaterialApp(home: ClothingCollectionPage()));
+
+    // Verify that the item image is present
+    expect(find.byType(ProductCard), findsNWidgets(4));
+  });
+
 
 
   testWidgets('ClothingCollectionPage has a footer message', (WidgetTester tester) async {
