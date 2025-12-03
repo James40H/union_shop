@@ -1,5 +1,16 @@
 import 'package:flutter/material.dart';
 
+const Key headerImageKey = Key('header_image');
+const Key headerHomeKey = Key('header_home');
+const Key headerShopKey = Key('header_shop');
+const Key headerPrintShackKey = Key('header_print_shack');
+const Key headerSaleKey = Key('header_sale');
+const Key headerAboutKey = Key('header_about');
+const Key footerSearchKey = Key('footer_search');
+const Key footerTermsKey = Key('footer_terms');
+const Key footerEmailKey = Key('footer_email');
+const Key footerEmailEntryKey = Key('footer_email_entry'); 
+
 class CollectionsPage extends StatelessWidget {
   const CollectionsPage({super.key});
 
@@ -35,7 +46,7 @@ class CollectionsPage extends StatelessWidget {
     // This is the event handler for buttons that don't work yet
   }
 
-  @override
+   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
@@ -69,6 +80,7 @@ class CollectionsPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             GestureDetector(
+                              key: headerImageKey,
                               onTap: () {
                                 navigateToHome(context);
                               },
@@ -104,64 +116,53 @@ class CollectionsPage extends StatelessWidget {
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         TextButton(
+                                          style: TextButton.styleFrom(
+                                            foregroundColor: Colors.black,
+                                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                                            minimumSize: const Size(0, 36),
+                                          ),
+                                          key: headerHomeKey,
                                           onPressed: () => navigateToHome(context),
+                                          child: const Text('Home'),
+                                        ),
+                                        TextButton(
                                           style: TextButton.styleFrom(
                                             foregroundColor: Colors.black,
                                             padding: const EdgeInsets.symmetric(horizontal: 12),
                                             minimumSize: const Size(0, 36),
                                           ),
-                                          child: const Text(
-                                            'Home',
-                                            style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                          ),
-                                        ),
-                                        TextButton(
+                                          key: headerShopKey,
                                           onPressed: () => navigateToCollections(context),
-                                          style: TextButton.styleFrom(
+                                          child: const Text('SHOP'),
+                                        ),
+                                        TextButton(style: TextButton.styleFrom(
                                             foregroundColor: Colors.black,
                                             padding: const EdgeInsets.symmetric(horizontal: 12),
                                             minimumSize: const Size(0, 36),
                                           ),
-                                          child: const Text(
-                                            'SHOP',
-                                            style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                          ),
-                                        ),
-                                        TextButton(
+                                          key: headerPrintShackKey,
                                           onPressed: placeholderCallbackForButtons,
+                                          child: const Text('The Print Shack'),
+                                        ),
+                                        TextButton(
                                           style: TextButton.styleFrom(
                                             foregroundColor: Colors.black,
                                             padding: const EdgeInsets.symmetric(horizontal: 12),
                                             minimumSize: const Size(0, 36),
                                           ),
-                                          child: const Text(
-                                            'The Print Shack',
-                                            style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                          ),
-                                        ),
-                                        TextButton(
+                                          key: headerSaleKey,
                                           onPressed: () => navigateToSale(context),
-                                          style: TextButton.styleFrom(
-                                            foregroundColor: Colors.black,
-                                            padding: const EdgeInsets.symmetric(horizontal: 12),
-                                            minimumSize: const Size(0, 36),
-                                          ),
-                                          child: const Text(
-                                            'SALE!',
-                                            style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                          ),
+                                          child: const Text('SALE!'),
                                         ),
                                         TextButton(
-                                          onPressed: () => navigateToAbout(context),
                                           style: TextButton.styleFrom(
                                             foregroundColor: Colors.black,
                                             padding: const EdgeInsets.symmetric(horizontal: 12),
                                             minimumSize: const Size(0, 36),
                                           ),
-                                          child: const Text(
-                                            'About',
-                                            style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                          ),
+                                          key: headerAboutKey,
+                                          onPressed: () => navigateToAbout(context),
+                                          child: const Text('About'),
                                         ),
                                       ],
                                     );
@@ -176,7 +177,7 @@ class CollectionsPage extends StatelessWidget {
                                 children: [
                                   IconButton(
                                     icon: const Icon(
-                                      Icons.search,
+                                      Icons.search,                                     
                                       size: 18,
                                       color: Colors.grey,
                                     ),
@@ -429,7 +430,7 @@ class CollectionsPage extends StatelessWidget {
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                      children: const [ 
                         Text(
                           'Opening Hours',
                           style: TextStyle(
@@ -492,6 +493,7 @@ class CollectionsPage extends StatelessWidget {
                       ],
                     ),
                   ),
+
                   // Column 2: Links
                   Expanded(
                     child: Column(
@@ -507,16 +509,19 @@ class CollectionsPage extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         TextButton(
+                          key: Key('footer_search'),
                           onPressed: placeholderCallbackForButtons,
                           child: const Text('Search'),
                         ),
                         TextButton(
+                          key: Key('footer_terms'),
                           onPressed: placeholderCallbackForButtons,
                           child: const Text('Terms & Conditions of Sale Policy'),
                         ),
                       ],
                     ),
                   ),
+
                   // Column 3: Email + Subscribe
                   Expanded(
                     child: Column(
@@ -532,6 +537,7 @@ class CollectionsPage extends StatelessWidget {
                             // email input
                             Expanded(
                               child: TextField(
+                                key: footerEmailEntryKey,
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
                                   hintText: 'Enter your email',
@@ -549,6 +555,7 @@ class CollectionsPage extends StatelessWidget {
                             const SizedBox(width: 8),
                           // subscribe button
                             ElevatedButton(
+                              key: footerEmailKey,
                               onPressed: placeholderCallbackForButtons,
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFF4d2963),
@@ -565,10 +572,11 @@ class CollectionsPage extends StatelessWidget {
                 ],
               ),
             ),
-          ],
-        ),
+        ],
+      ),
       ),
     );
+
   }
 }
 
