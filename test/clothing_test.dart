@@ -15,7 +15,7 @@ void main() {
     testWidgets('ClothingCollectionPage has Main header image', (WidgetTester tester) async {
         await tester.pumpWidget(const MaterialApp(home: ClothingCollectionPage()));
 
-      expect(find.byType(Image), findsOneWidget);
+      expect(find.byKey(headerImageKey), findsOneWidget);
     });
     testWidgets('ClothingCollectionPage has Main header home button', (WidgetTester tester) async {
 
@@ -142,9 +142,15 @@ void main() {
       // Assert header buttons are present using keys.
       expect(find.byKey(headermenuKey), findsOneWidget);
     });
-    
-    
   });
+
+  testWidgets('ClothingCollectionPage has a title', (WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(home: ClothingCollectionPage()));
+
+    // Verify that the title is present
+    expect(find.text('Jumpers & Hoodies'), findsOneWidget);
+  });
+
 
 
   testWidgets('ClothingCollectionPage has a footer message', (WidgetTester tester) async {
