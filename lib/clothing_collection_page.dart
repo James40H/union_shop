@@ -151,12 +151,13 @@ class _ClothingCollectionPageState extends State<ClothingCollectionPage> {
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         TextButton(
+                                          key: headerHomeKey,
                                           style: TextButton.styleFrom(
                                             foregroundColor: Colors.black,
                                             padding: const EdgeInsets.symmetric(horizontal: 12),
                                             minimumSize: const Size(0, 36),
                                           ),
-                                          key: headerHomeKey,
+                                          
                                           onPressed: () => navigateToHome(context),
                                           child: const Text('Home'),
                                         ),
