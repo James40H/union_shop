@@ -5,6 +5,7 @@ const Key headerShopKey = Key('header_shop');
 const Key headerPrintShackKey = Key('header_print_shack');
 const Key headerSaleKey = Key('header_sale');
 const Key headerAboutKey = Key('header_about');
+const Key headerSearchKey = Key('header_search');
 
 const Key footerSearchKey = Key('footer_search');
 const Key footerTermsKey = Key('footer_terms');
@@ -170,8 +171,9 @@ class AboutPage extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   IconButton(
+                                    key: headerSearchKey,
                                     icon: const Icon(
-                                      Icons.search,
+                                      Icons.search,                                     
                                       size: 18,
                                       color: Colors.grey,
                                     ),
