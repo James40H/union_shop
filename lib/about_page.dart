@@ -5,10 +5,10 @@ const Key headerShopKey = Key('header_shop');
 const Key headerPrintShackKey = Key('header_print_shack');
 const Key headerSaleKey = Key('header_sale');
 const Key headerAboutKey = Key('header_about');
-const Key headerSearchKey = Key('header_search');
-
 const Key footerSearchKey = Key('footer_search');
 const Key footerTermsKey = Key('footer_terms');
+const Key footerEmailKey = Key('footer_email');
+const Key footerEmailEntryKey = Key('footer_email_entry'); 
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
@@ -171,7 +171,6 @@ class AboutPage extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   IconButton(
-                                    key: headerSearchKey,
                                     icon: const Icon(
                                       Icons.search,                                     
                                       size: 18,
@@ -415,10 +414,12 @@ The Union Shop & Reception Team''',
                         ),
                         const SizedBox(height: 8),
                         TextButton(
+                          key: Key('footer_search'),
                           onPressed: placeholderCallbackForButtons,
                           child: const Text('Search'),
                         ),
                         TextButton(
+                          key: Key('footer_terms'),
                           onPressed: placeholderCallbackForButtons,
                           child: const Text('Terms & Conditions of Sale Policy'),
                         ),
@@ -441,6 +442,7 @@ The Union Shop & Reception Team''',
                             // email input
                             Expanded(
                               child: TextField(
+                                key: footerEmailEntryKey,
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
                                   hintText: 'Enter your email',
@@ -458,6 +460,7 @@ The Union Shop & Reception Team''',
                             const SizedBox(width: 8),
                           // subscribe button
                             ElevatedButton(
+                              key: footerEmailKey,
                               onPressed: placeholderCallbackForButtons,
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFF4d2963),
