@@ -6,6 +6,10 @@ const Key headerShopKey = Key('header_shop');
 const Key headerPrintShackKey = Key('header_print_shack');
 const Key headerSaleKey = Key('header_sale');
 const Key headerAboutKey = Key('header_about');
+const Key mainImageKey = Key('main_image');
+const Key quantityBoxKey = Key('quantity_box');
+const Key personalizationKey = Key('personalization_text_field');
+const Key addToCartButtonKey = Key('add_to_cart_button');
 const Key footerSearchKey = Key('footer_search');
 const Key footerTermsKey = Key('footer_terms');
 const Key footerEmailKey = Key('footer_email');
@@ -324,6 +328,7 @@ class _PrintShackPageState extends State<PrintShackPage> {
                 children: [
                   // Product image
                   Container(
+                    key: mainImageKey,
                     height: 500,
                     width: double.infinity,
                     decoration: BoxDecoration(
@@ -410,6 +415,7 @@ class _PrintShackPageState extends State<PrintShackPage> {
 
                   // Personalization input (added)
                   TextFormField(
+                    key: personalizationKey,
                     controller: _personalizationController,
                     maxLength: 40,
                     decoration: const InputDecoration(
@@ -455,6 +461,7 @@ class _PrintShackPageState extends State<PrintShackPage> {
 
                   // Quantity selector
                   Row(
+                    key: quantityBoxKey,
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       const Text('Quantity', style: TextStyle(fontSize: 16)),
@@ -503,6 +510,7 @@ class _PrintShackPageState extends State<PrintShackPage> {
 
                   // Add to cart button (matches page colour, no action)
                   SizedBox(
+                    key: addToCartButtonKey,
                     width: double.infinity,
                     height: 48,
                     child: ElevatedButton(
