@@ -276,7 +276,7 @@ class HomeScreen extends StatelessWidget {
                                                 navigateToCollections(context);
                                                 break;
                                               case 'print_shack':
-                                                placeholderCallbackForButtons();
+                                                navigateToPrintShack(context);
                                                 break;
                                               case 'sale':
                                                 navigateToSale(context);
