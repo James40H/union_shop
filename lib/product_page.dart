@@ -7,6 +7,8 @@ const Key headerPrintShackKey = Key('header_print_shack');
 const Key headerSaleKey = Key('header_sale');
 const Key headerAboutKey = Key('header_about');
 const Key mainImageKey = Key('main_image');
+const Key quantityBoxKey = Key('quantity_box');
+const Key addToCartButtonKey = Key('add_to_cart_button');
 const Key footerSearchKey = Key('footer_search');
 const Key footerTermsKey = Key('footer_terms');
 const Key footerEmailKey = Key('footer_email');
@@ -419,6 +421,7 @@ class _ProductPageState extends State<ProductPage> {
                       const Text('Quantity', style: TextStyle(fontSize: 16)),
                       const SizedBox(width: 12),
                       Container(
+                        key: quantityBoxKey,
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey.shade400),
                           borderRadius: BorderRadius.circular(6),
@@ -462,6 +465,7 @@ class _ProductPageState extends State<ProductPage> {
 
                   // Add to cart button (matches page colour, no action)
                   SizedBox(
+                    key: Key('add_to_cart_button'),
                     width: double.infinity,
                     height: 48,
                     child: ElevatedButton(
