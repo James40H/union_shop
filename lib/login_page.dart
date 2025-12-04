@@ -1,5 +1,20 @@
 import 'package:flutter/material.dart';
 
+const Key headerImageKey = Key('header_image');
+const Key headerHomeKey = Key('header_home');
+const Key headerShopKey = Key('header_shop');
+const Key headerPrintShackKey = Key('header_print_shack');
+const Key headerSaleKey = Key('header_sale');
+const Key headerAboutKey = Key('header_about');
+const Key emailLoginKey = Key('email_login');
+const Key googleLoginKey = Key('google_login');
+const Key emailEnterKey = Key('email_enter');
+const Key passwordLoginKey = Key('password_login');
+const Key footerSearchKey = Key('footer_search');
+const Key footerTermsKey = Key('footer_terms');
+const Key footerEmailKey = Key('footer_email');
+const Key footerEmailEntryKey = Key('footer_email_entry'); 
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -66,12 +81,10 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Make the scaffold background white so the login area appears fully white
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Header (kept from your original file)
+            // Header
             LayoutBuilder(builder: (context, constraints) {
               final isMobile = constraints.maxWidth < 600;
               final headerHeight = isMobile ? 140.0 : 100.0;
@@ -99,10 +112,13 @@ class _LoginPageState extends State<LoginPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             GestureDetector(
-                              onTap: () => navigateToHome(context),
+                              key: headerImageKey,
+                              onTap: () {
+                                navigateToHome(context);
+                              },
                               child: Image.network(
                                 'https://shop.upsu.net/cdn/shop/files/upsu_300x300.png?v=1614735854',
-                                height: isMobile ? 30 : 30,
+                                height: isMobile ? 30 : 30, // slightly larger logo on mobile
                                 fit: BoxFit.cover,
                                 errorBuilder: (context, error, stackTrace) {
                                   return Container(
@@ -124,70 +140,61 @@ class _LoginPageState extends State<LoginPage> {
                                 child: LayoutBuilder(builder: (context, constraints) {
                                   final isMobileInner = constraints.maxWidth < 600;
                                   if (isMobileInner) {
+                                    // On mobile we move the menu into the right-hand menu icon,
+                                    // so render nothing here to keep the header compact.
                                     return const SizedBox.shrink();
                                   } else {
                                     return Row(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         TextButton(
+                                          style: TextButton.styleFrom(
+                                            foregroundColor: Colors.black,
+                                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                                            minimumSize: const Size(0, 36),
+                                          ),
+                                          key: headerHomeKey,
                                           onPressed: () => navigateToHome(context),
+                                          child: const Text('Home'),
+                                        ),
+                                        TextButton(
                                           style: TextButton.styleFrom(
                                             foregroundColor: Colors.black,
                                             padding: const EdgeInsets.symmetric(horizontal: 12),
                                             minimumSize: const Size(0, 36),
                                           ),
-                                          child: const Text(
-                                            'Home',
-                                            style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                          ),
-                                        ),
-                                        TextButton(
+                                          key: headerShopKey,
                                           onPressed: () => navigateToCollections(context),
-                                          style: TextButton.styleFrom(
+                                          child: const Text('SHOP'),
+                                        ),
+                                        TextButton(style: TextButton.styleFrom(
                                             foregroundColor: Colors.black,
                                             padding: const EdgeInsets.symmetric(horizontal: 12),
                                             minimumSize: const Size(0, 36),
                                           ),
-                                          child: const Text(
-                                            'SHOP',
-                                            style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                          ),
-                                        ),
-                                        TextButton(
+                                          key: headerPrintShackKey,
                                           onPressed: () => navigateToPrintShack(context),
+                                          child: const Text('The Print Shack'),
+                                        ),
+                                        TextButton(
                                           style: TextButton.styleFrom(
                                             foregroundColor: Colors.black,
                                             padding: const EdgeInsets.symmetric(horizontal: 12),
                                             minimumSize: const Size(0, 36),
                                           ),
-                                          child: const Text(
-                                            'The Print Shack',
-                                            style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                          ),
-                                        ),
-                                        TextButton(
+                                          key: headerSaleKey,
                                           onPressed: () => navigateToSale(context),
-                                          style: TextButton.styleFrom(
-                                            foregroundColor: Colors.black,
-                                            padding: const EdgeInsets.symmetric(horizontal: 12),
-                                            minimumSize: const Size(0, 36),
-                                          ),
-                                          child: const Text(
-                                            'SALE!',
-                                            style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                          ),
+                                          child: const Text('SALE!'),
                                         ),
                                         TextButton(
-                                          onPressed: () => navigateToAbout(context),
                                           style: TextButton.styleFrom(
                                             foregroundColor: Colors.black,
                                             padding: const EdgeInsets.symmetric(horizontal: 12),
                                             minimumSize: const Size(0, 36),
                                           ),
-                                          child: const Text(
-                                            'About',
-                                            style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                          ),
+                                          key: headerAboutKey,
+                                          onPressed: () => navigateToAbout(context),
+                                          child: const Text('About'),
                                         ),
                                       ],
                                     );
@@ -202,7 +209,7 @@ class _LoginPageState extends State<LoginPage> {
                                 children: [
                                   IconButton(
                                     icon: const Icon(
-                                      Icons.search,
+                                      Icons.search,                                     
                                       size: 18,
                                       color: Colors.grey,
                                     ),
@@ -224,7 +231,7 @@ class _LoginPageState extends State<LoginPage> {
                                       minWidth: 32,
                                       minHeight: 32,
                                     ),
-                                    onPressed:() => navigateToLogin(context),
+                                    onPressed: () => navigateToLogin(context),
                                   ),
                                   IconButton(
                                     icon: const Icon(
@@ -239,6 +246,8 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                     onPressed: placeholderCallbackForButtons,
                                   ),
+                                  // On narrow screens show the popup menu from the menu icon.
+                                  // On wider screens keep a plain icon button (or use it later).
                                   isMobile
                                       ? PopupMenuButton<String>(
                                           icon: const Icon(
@@ -340,6 +349,7 @@ class _LoginPageState extends State<LoginPage> {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 TextFormField(
+                                  key: emailEnterKey,
                                   controller: _emailCtrl,
                                   keyboardType: TextInputType.emailAddress,
                                   decoration: const InputDecoration(
@@ -355,6 +365,7 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                                 const SizedBox(height: 12),
                                 TextFormField(
+                                  key: passwordLoginKey,
                                   controller: _passwordCtrl,
                                   obscureText: _obscure,
                                   decoration: InputDecoration(
@@ -390,6 +401,7 @@ class _LoginPageState extends State<LoginPage> {
                                 SizedBox(
                                   height: 48,
                                   child: ElevatedButton(
+                                    key: emailLoginKey,
                                     onPressed: _loading ? null : _signIn,
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: const Color(0xFF4d2963),
@@ -418,6 +430,7 @@ class _LoginPageState extends State<LoginPage> {
                                 SizedBox(
                                   height: 44,
                                   child: OutlinedButton.icon(
+                                    key: googleLoginKey,
                                     onPressed: placeholderCallbackForButtons,
                                     icon: const Icon(Icons.login),
                                     label: const Text('Sign in with Google'),
@@ -503,10 +516,12 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         const SizedBox(height: 8),
                         TextButton(
+                          key: footerSearchKey,
                           onPressed: placeholderCallbackForButtons,
                           child: const Text('Search'),
                         ),
                         TextButton(
+                          key: footerTermsKey,
                           onPressed: placeholderCallbackForButtons,
                           child: const Text('Terms & Conditions of Sale Policy'),
                         ),
@@ -529,6 +544,7 @@ class _LoginPageState extends State<LoginPage> {
                             // email input
                             Expanded(
                               child: TextField(
+                                key: footerEmailEntryKey,
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
                                   hintText: 'Enter your email',
@@ -546,6 +562,7 @@ class _LoginPageState extends State<LoginPage> {
                             const SizedBox(width: 8),
                             // subscribe button
                             ElevatedButton(
+                              key: footerEmailKey,
                               onPressed: placeholderCallbackForButtons,
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFF4d2963),
