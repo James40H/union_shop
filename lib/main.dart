@@ -11,6 +11,17 @@ void main() {
   runApp(const UnionShopApp());
 }
 
+const Key headerImageKey = Key('header_image');
+const Key headerHomeKey = Key('header_home');
+const Key headerShopKey = Key('header_shop');
+const Key headerPrintShackKey = Key('header_print_shack');
+const Key headerSaleKey = Key('header_sale');
+const Key headerAboutKey = Key('header_about');
+const Key footerSearchKey = Key('footer_search');
+const Key footerTermsKey = Key('footer_terms');
+const Key footerEmailKey = Key('footer_email');
+const Key footerEmailEntryKey = Key('footer_email_entry'); 
+
 class UnionShopApp extends StatelessWidget {
   const UnionShopApp({super.key});
 
@@ -113,6 +124,7 @@ class HomeScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             GestureDetector(
+                              key: headerImageKey,
                               onTap: () {
                                 navigateToHome(context);
                               },
@@ -148,64 +160,53 @@ class HomeScreen extends StatelessWidget {
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         TextButton(
+                                          style: TextButton.styleFrom(
+                                            foregroundColor: Colors.black,
+                                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                                            minimumSize: const Size(0, 36),
+                                          ),
+                                          key: headerHomeKey,
                                           onPressed: () => navigateToHome(context),
+                                          child: const Text('Home'),
+                                        ),
+                                        TextButton(
                                           style: TextButton.styleFrom(
                                             foregroundColor: Colors.black,
                                             padding: const EdgeInsets.symmetric(horizontal: 12),
                                             minimumSize: const Size(0, 36),
                                           ),
-                                          child: const Text(
-                                            'Home',
-                                            style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                          ),
-                                        ),
-                                        TextButton(
+                                          key: headerShopKey,
                                           onPressed: () => navigateToCollections(context),
-                                          style: TextButton.styleFrom(
+                                          child: const Text('SHOP'),
+                                        ),
+                                        TextButton(style: TextButton.styleFrom(
                                             foregroundColor: Colors.black,
                                             padding: const EdgeInsets.symmetric(horizontal: 12),
                                             minimumSize: const Size(0, 36),
                                           ),
-                                          child: const Text(
-                                            'SHOP',
-                                            style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                          ),
-                                        ),
-                                        TextButton(
+                                          key: headerPrintShackKey,
                                           onPressed: () => navigateToPrintShack(context),
+                                          child: const Text('The Print Shack'),
+                                        ),
+                                        TextButton(
                                           style: TextButton.styleFrom(
                                             foregroundColor: Colors.black,
                                             padding: const EdgeInsets.symmetric(horizontal: 12),
                                             minimumSize: const Size(0, 36),
                                           ),
-                                          child: const Text(
-                                            'The Print Shack',
-                                            style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                          ),
-                                        ),
-                                        TextButton(
+                                          key: headerSaleKey,
                                           onPressed: () => navigateToSale(context),
-                                          style: TextButton.styleFrom(
-                                            foregroundColor: Colors.black,
-                                            padding: const EdgeInsets.symmetric(horizontal: 12),
-                                            minimumSize: const Size(0, 36),
-                                          ),
-                                          child: const Text(
-                                            'SALE!',
-                                            style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                          ),
+                                          child: const Text('SALE!'),
                                         ),
                                         TextButton(
-                                          onPressed: () => navigateToAbout(context),
                                           style: TextButton.styleFrom(
                                             foregroundColor: Colors.black,
                                             padding: const EdgeInsets.symmetric(horizontal: 12),
                                             minimumSize: const Size(0, 36),
                                           ),
-                                          child: const Text(
-                                            'About',
-                                            style: TextStyle(letterSpacing: 1, fontSize: 14),
-                                          ),
+                                          key: headerAboutKey,
+                                          onPressed: () => navigateToAbout(context),
+                                          child: const Text('About'),
                                         ),
                                       ],
                                     );
@@ -220,7 +221,7 @@ class HomeScreen extends StatelessWidget {
                                 children: [
                                   IconButton(
                                     icon: const Icon(
-                                      Icons.search,
+                                      Icons.search,                                     
                                       size: 18,
                                       color: Colors.grey,
                                     ),
@@ -330,8 +331,8 @@ class HomeScreen extends StatelessWidget {
                     child: Container(
                       decoration: const BoxDecoration(
                         image: DecorationImage(
-                          image: NetworkImage(
-                            'https://shop.upsu.net/cdn/shop/products/BlackSweatshirtFinal_1024x1024@2x.png?v=1741965433',
+                          image: AssetImage(
+                            'assets/images/BlackSweatshirtFinal.webp',
                           ),
                           fit: BoxFit.cover,
                         ),
@@ -418,14 +419,14 @@ class HomeScreen extends StatelessWidget {
                       children: const [
                         ProductCard(
                           title: 'Jumper Purple',
-                          price: '£15.00',
+                          price: '£21.00',
                           salePrice: null,
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PurpleHoodieFinal.jpg?v=1742201957',
                         ),
                         ProductCard(
                           title: 'Jumper White',
-                          price: '£20.00',
+                          price: '£22.00',
                           salePrice: null,
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/Ivory_Hoodie_1024x1024@2x.png?v=1745583522',
@@ -628,10 +629,12 @@ class HomeScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         TextButton(
+                          key: footerSearchKey,
                           onPressed: placeholderCallbackForButtons,
                           child: const Text('Search'),
                         ),
                         TextButton(
+                          key: footerTermsKey,
                           onPressed: placeholderCallbackForButtons,
                           child: const Text('Terms & Conditions of Sale Policy'),
                         ),
@@ -654,6 +657,7 @@ class HomeScreen extends StatelessWidget {
                             // email input
                             Expanded(
                               child: TextField(
+                                key: footerEmailEntryKey,
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
                                   hintText: 'Enter your email',
@@ -671,6 +675,7 @@ class HomeScreen extends StatelessWidget {
                             const SizedBox(width: 8),
                           // subscribe button
                             ElevatedButton(
+                              key: footerEmailKey,
                               onPressed: placeholderCallbackForButtons,
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFF4d2963),
