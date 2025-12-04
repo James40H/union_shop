@@ -11,6 +11,13 @@ class _PrintShackPageState extends State<PrintShackPage> {
   String? _selectedSize;
   final List<String> _sizes = ['Small', 'Medium', 'Large', 'XL'];
 
+  // Added controller and value for personalization line
+  final TextEditingController _personalizationController = TextEditingController();
+  String? _personalizationText;
+
+  // Added quantity state (starts at 1)
+  int _quantity = 1;
+  
   void navigateToHome(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
   }
@@ -45,6 +52,13 @@ class _PrintShackPageState extends State<PrintShackPage> {
 
   void placeholderCallbackForButtons() {
     // This is the event handler for buttons that don't work yet
+  }
+
+  @override
+  void dispose() {
+    // dispose the controller to avoid memory leaks
+    _personalizationController.dispose();
+    super.dispose();
   }
 
   @override
@@ -381,6 +395,26 @@ class _PrintShackPageState extends State<PrintShackPage> {
 
                   const SizedBox(height: 16),
 
+                  // Personalization input (added)
+                  TextFormField(
+                    controller: _personalizationController,
+                    maxLength: 40,
+                    decoration: const InputDecoration(
+                      labelText: 'Personalization line',
+                      hintText: 'Enter name or short line to personalise',
+                      isDense: true,
+                      contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                      border: OutlineInputBorder(),
+                    ),
+                    onChanged: (val) {
+                      setState(() {
+                        _personalizationText = val;
+                      });
+                    },
+                  ),
+
+                  const SizedBox(height: 16),
+
                   // Size dropdown (mobile-friendly full width)
                   DropdownButtonFormField<String>(
                     value: _selectedSize,
@@ -402,6 +436,54 @@ class _PrintShackPageState extends State<PrintShackPage> {
                       });
                     },
                     hint: const Text('Select size'),
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  // Quantity selector
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Text('Quantity', style: TextStyle(fontSize: 16)),
+                      const SizedBox(width: 12),
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey.shade400),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.remove),
+                              onPressed: () {
+                                setState(() {
+                                  if (_quantity > 1) _quantity--;
+                                });
+                              },
+                              padding: const EdgeInsets.symmetric(horizontal: 8),
+                              constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
+                            ),
+                            SizedBox(
+                              width: 40,
+                              child: Center(
+                                child: Text('$_quantity', style: const TextStyle(fontSize: 16)),
+                              ),
+                            ),
+                            IconButton(
+                              icon: const Icon(Icons.add),
+                              onPressed: () {
+                                setState(() {
+                                  _quantity++;
+                                });
+                              },
+                              padding: const EdgeInsets.symmetric(horizontal: 8),
+                              constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
 
                   const SizedBox(height: 24),
