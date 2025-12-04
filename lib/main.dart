@@ -5,7 +5,7 @@ import 'package:union_shop/collections_page.dart';
 import 'package:union_shop/clothing_collection_page.dart';
 import 'package:union_shop/sale_page.dart';
 import 'package:union_shop/login_page.dart';
-import 'package:union_shop/Print_shack_page.dart';
+import 'package:union_shop/print_shack_page.dart';
 
 void main() {
   runApp(const UnionShopApp());
