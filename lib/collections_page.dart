@@ -42,6 +42,10 @@ class CollectionsPage extends StatelessWidget {
     Navigator.pushNamed(context, '/login');
   }
 
+    void navigateToPrintShack(BuildContext context) {
+    Navigator.pushNamed(context, '/print-shack');
+  }
+
   void placeholderCallbackForButtons() {
     // This is the event handler for buttons that don't work yet
   }
@@ -141,7 +145,7 @@ class CollectionsPage extends StatelessWidget {
                                             minimumSize: const Size(0, 36),
                                           ),
                                           key: headerPrintShackKey,
-                                          onPressed: placeholderCallbackForButtons,
+                                          onPressed: () => navigateToPrintShack(context),
                                           child: const Text('The Print Shack'),
                                         ),
                                         TextButton(
@@ -233,7 +237,7 @@ class CollectionsPage extends StatelessWidget {
                                                 navigateToCollections(context);
                                                 break;
                                               case 'print_shack':
-                                                placeholderCallbackForButtons();
+                                                navigateToPrintShack(context);
                                                 break;
                                               case 'sale':
                                                 navigateToSale(context);
