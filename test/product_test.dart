@@ -105,6 +105,31 @@ void main() {
     });
   });
 
+  testWidgets('ProductPage has a Main Image and title and price', (WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(home: ProductPage()));
+
+    // Verify that the main image is present
+    expect(find.byKey(mainImageKey), findsOneWidget);
+    expect(find.text('Portsmouth City Magnet'), findsOneWidget);
+    expect(find.text('£15.00'), findsOneWidget);
+  });
+
+  testWidgets('ProductPage has a size dropdown and quantity box', (WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(home: ProductPage()));
+
+    // Verify that the size dropdown is present
+    expect(find.byType(DropdownButton<String>), findsOneWidget);
+
+    // Verify that the quantity box is present
+    expect(find.byKey(quantityBoxKey), findsOneWidget);
+  });
+
+  testWidgets('ProductPage has a add to cart button', (WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(home: ProductPage()));
+
+    // Verify that the add to cart button is present
+    expect(find.byKey(addToCartButtonKey), findsOneWidget);
+  });
   testWidgets('ProductPage has a footer message', (WidgetTester tester) async {
     await tester.pumpWidget(const MaterialApp(home: ProductPage()));
 
