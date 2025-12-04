@@ -1,5 +1,17 @@
 import 'package:flutter/material.dart';
 
+const Key headerImageKey = Key('header_image');
+const Key headerHomeKey = Key('header_home');
+const Key headerShopKey = Key('header_shop');
+const Key headerPrintShackKey = Key('header_print_shack');
+const Key headerSaleKey = Key('header_sale');
+const Key headerAboutKey = Key('header_about');
+const Key mainImageKey = Key('main_image');
+const Key footerSearchKey = Key('footer_search');
+const Key footerTermsKey = Key('footer_terms');
+const Key footerEmailKey = Key('footer_email');
+const Key footerEmailEntryKey = Key('footer_email_entry'); 
+
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key});
 
@@ -78,6 +90,7 @@ class _ProductPageState extends State<ProductPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             GestureDetector(
+                              key: headerImageKey,
                               onTap: () {
                                 navigateToHome(context);
                               },
@@ -292,6 +305,7 @@ class _ProductPageState extends State<ProductPage> {
                 children: [
                   // Product image
                   Container(
+                    key: mainImageKey,
                     height: 500,
                     width: double.infinity,
                     decoration: BoxDecoration(
@@ -366,7 +380,7 @@ class _ProductPageState extends State<ProductPage> {
                   ),
                   const SizedBox(height: 8),
                   const Text(
-                    'This is a placeholder description for the product. Students should replace this with real product information and implement proper data management.',
+                    'A magnet for Portsmouth enthusiasts!',
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey,
@@ -558,10 +572,12 @@ class _ProductPageState extends State<ProductPage> {
                         ),
                         const SizedBox(height: 8),
                         TextButton(
+                          key: footerSearchKey,
                           onPressed: placeholderCallbackForButtons,
                           child: const Text('Search'),
                         ),
                         TextButton(
+                          key: footerTermsKey,
                           onPressed: placeholderCallbackForButtons,
                           child: const Text('Terms & Conditions of Sale Policy'),
                         ),
@@ -584,6 +600,7 @@ class _ProductPageState extends State<ProductPage> {
                             // email input
                             Expanded(
                               child: TextField(
+                                key: footerEmailEntryKey,
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
                                   hintText: 'Enter your email',
@@ -601,6 +618,7 @@ class _ProductPageState extends State<ProductPage> {
                             const SizedBox(width: 8),
                           // subscribe button
                             ElevatedButton(
+                              key: footerEmailKey,
                               onPressed: placeholderCallbackForButtons,
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFF4d2963),
