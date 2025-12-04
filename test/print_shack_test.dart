@@ -105,6 +105,36 @@ void main() {
     });
   });
 
+  testWidgets('PrintShackPage has a Main Image and title and price', (WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(home: PrintShackPage()));
+
+    // Verify that the main image is present
+    expect(find.byKey(mainImageKey), findsOneWidget); 
+    expect(find.text('Personalization'), findsOneWidget);
+    expect(find.text('£15.00'), findsOneWidget);
+  });
+
+  testWidgets('PrintShackPage has a size dropdown and quantity box and personalization text field', (WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(home: PrintShackPage()));
+
+    // Verify that the size dropdown is present
+    expect(find.byType(DropdownButton<String>), findsOneWidget);
+
+    // Verify that the quantity box is present
+    expect(find.byKey(quantityBoxKey), findsOneWidget);
+
+    // Verify that the personalization text field is present
+    expect(find.byKey(personalizationKey), findsOneWidget);
+  });
+
+  testWidgets('PrintShackPage has a add to cart button', (WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(home: PrintShackPage()));
+
+    // Verify that the add to cart button is present
+    expect(find.byKey(addToCartButtonKey), findsOneWidget);
+  });
+
+
 
   testWidgets('SalePage has a footer message', (WidgetTester tester) async {
     await tester.pumpWidget(const MaterialApp(home:PrintShackPage()));
