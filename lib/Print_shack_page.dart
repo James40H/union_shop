@@ -13,6 +13,7 @@ class _PrintShackPageState extends State<PrintShackPage> {
 
   // Added controller and value for personalization line
   final TextEditingController _personalizationController = TextEditingController();
+  // ignore: unused_field
   String? _personalizationText;
 
   // Added quantity state (starts at 1)
