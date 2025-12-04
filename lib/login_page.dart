@@ -39,6 +39,10 @@ class _LoginPageState extends State<LoginPage> {
   Navigator.pushNamed(context, '/login');
   }
 
+    void navigateToPrintShack(BuildContext context) {
+    Navigator.pushNamed(context, '/print-shack');
+  }
+
   void placeholderCallbackForButtons() {
     // placeholder
   }
@@ -150,7 +154,7 @@ class _LoginPageState extends State<LoginPage> {
                                           ),
                                         ),
                                         TextButton(
-                                          onPressed: placeholderCallbackForButtons,
+                                          onPressed: () => navigateToPrintShack(context),
                                           style: TextButton.styleFrom(
                                             foregroundColor: Colors.black,
                                             padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -252,7 +256,7 @@ class _LoginPageState extends State<LoginPage> {
                                                 navigateToCollections(context);
                                                 break;
                                               case 'print_shack':
-                                                placeholderCallbackForButtons();
+                                                navigateToPrintShack(context);
                                                 break;
                                               case 'sale':
                                                 navigateToSale(context);
