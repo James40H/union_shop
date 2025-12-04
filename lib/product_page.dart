@@ -10,6 +10,7 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
   String? _selectedSize;
   final List<String> _sizes = ['Small', 'Medium', 'Large', 'XL'];
+  int _quantity = 1;
 
   void navigateToHome(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
@@ -396,6 +397,51 @@ class _ProductPageState extends State<ProductPage> {
                       });
                     },
                     hint: const Text('Select size'),
+                  ),
+                  const SizedBox(height: 16),
+                   Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Text('Quantity', style: TextStyle(fontSize: 16)),
+                      const SizedBox(width: 12),
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey.shade400),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.remove),
+                              onPressed: () {
+                                setState(() {
+                                  if (_quantity > 1) _quantity--;
+                                });
+                              },
+                              padding: const EdgeInsets.symmetric(horizontal: 8),
+                              constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
+                            ),
+                            SizedBox(
+                              width: 40,
+                              child: Center(
+                                child: Text('$_quantity', style: const TextStyle(fontSize: 16)),
+                              ),
+                            ),
+                            IconButton(
+                              icon: const Icon(Icons.add),
+                              onPressed: () {
+                                setState(() {
+                                  _quantity++;
+                                });
+                              },
+                              padding: const EdgeInsets.symmetric(horizontal: 8),
+                              constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
 
                   const SizedBox(height: 24),
