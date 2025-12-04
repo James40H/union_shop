@@ -28,6 +28,10 @@ class SalePage extends StatelessWidget {
     Navigator.pushNamed(context, '/login');
   }
 
+  void navigateToPrintShack(BuildContext context) {
+    Navigator.pushNamed(context, '/print-shack');
+  }
+
   void placeholderCallbackForButtons() {
     // This is the event handler for buttons that don't work yet
   }
@@ -126,7 +130,7 @@ class SalePage extends StatelessWidget {
                                           ),
                                         ),
                                         TextButton(
-                                          onPressed: placeholderCallbackForButtons,
+                                          onPressed: () => navigateToPrintShack(context),
                                           style: TextButton.styleFrom(
                                             foregroundColor: Colors.black,
                                             padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -230,7 +234,7 @@ class SalePage extends StatelessWidget {
                                                 navigateToCollections(context);
                                                 break;
                                               case 'print_shack':
-                                                placeholderCallbackForButtons();
+                                                navigateToPrintShack(context);
                                                 break;
                                               case 'sale':
                                                 navigateToSale(context);
