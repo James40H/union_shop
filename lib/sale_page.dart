@@ -1,5 +1,16 @@
 import 'package:flutter/material.dart';
 
+const Key headerImageKey = Key('header_image');
+const Key headerHomeKey = Key('header_home');
+const Key headerShopKey = Key('header_shop');
+const Key headerPrintShackKey = Key('header_print_shack');
+const Key headerSaleKey = Key('header_sale');
+const Key headerAboutKey = Key('header_about');
+const Key footerSearchKey = Key('footer_search');
+const Key footerTermsKey = Key('footer_terms');
+const Key footerEmailKey = Key('footer_email');
+const Key footerEmailEntryKey = Key('footer_email_entry'); 
+
 class SalePage extends StatelessWidget {
   const SalePage({super.key});
 
@@ -71,6 +82,7 @@ class SalePage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             GestureDetector(
+                              key: headerImageKey,
                               onTap: () {
                                 navigateToHome(context);
                               },
@@ -424,10 +436,12 @@ class SalePage extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         TextButton(
+                          key: footerSearchKey,
                           onPressed: placeholderCallbackForButtons,
                           child: const Text('Search'),
                         ),
                         TextButton(
+                          key: footerTermsKey,
                           onPressed: placeholderCallbackForButtons,
                           child: const Text('Terms & Conditions of Sale Policy'),
                         ),
@@ -450,6 +464,7 @@ class SalePage extends StatelessWidget {
                             // email input
                             Expanded(
                               child: TextField(
+                                key: footerEmailEntryKey,
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
                                   hintText: 'Enter your email',
@@ -467,6 +482,7 @@ class SalePage extends StatelessWidget {
                             const SizedBox(width: 8),
                           // subscribe button
                             ElevatedButton(
+                              key: footerEmailKey,
                               onPressed: placeholderCallbackForButtons,
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFF4d2963),
