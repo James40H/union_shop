@@ -297,7 +297,7 @@ class _PrintShackPageState extends State<PrintShackPage> {
                 children: [
                   // Product image
                   Container(
-                    height: 300,
+                    height: 500,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
@@ -306,7 +306,7 @@ class _PrintShackPageState extends State<PrintShackPage> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8),
                       child: Image.network(
-                        'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                        'https://shop.upsu.net/cdn/shop/products/Personalised_Image_1024x1024@2x.jpg?v=1562949869',
                         fit: BoxFit.cover,
                         errorBuilder: (context, error, stackTrace) {
                           return Container(
@@ -338,7 +338,7 @@ class _PrintShackPageState extends State<PrintShackPage> {
 
                   // Product name
                   const Text(
-                    'Portsmouth City Magnet',
+                    'Personalization',
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
@@ -371,7 +371,7 @@ class _PrintShackPageState extends State<PrintShackPage> {
                   ),
                   const SizedBox(height: 8),
                   const Text(
-                    'This is a placeholder description for the product. Students should replace this with real product information and implement proper data management.',
+                    'This is to buy a personalized Jumper from The Print Shack.',
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey,
