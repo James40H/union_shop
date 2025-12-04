@@ -5,6 +5,7 @@ import 'package:union_shop/collections_page.dart';
 import 'package:union_shop/clothing_collection_page.dart';
 import 'package:union_shop/sale_page.dart';
 import 'package:union_shop/login_page.dart';
+import 'package:union_shop/Print_shack_page.dart';
 
 void main() {
   runApp(const UnionShopApp());
@@ -33,6 +34,7 @@ class UnionShopApp extends StatelessWidget {
       '/collections/clothing': (context) => const ClothingCollectionPage(),
       '/collections/sale': (context) => const SalePage(),
       '/login': (context) => const LoginPage(),
+      '/print-shack': (context) => const PrintShackPage(),
       },
     );
   }
@@ -67,6 +69,10 @@ class HomeScreen extends StatelessWidget {
 
   void navigateToLogin(BuildContext context) {
     Navigator.pushNamed(context, '/login');
+  }
+
+  void navigateToPrintShack(BuildContext context) {
+    Navigator.pushNamed(context, '/print-shack');
   }
 
   void placeholderCallbackForButtons() {
@@ -166,7 +172,7 @@ class HomeScreen extends StatelessWidget {
                                           ),
                                         ),
                                         TextButton(
-                                          onPressed: placeholderCallbackForButtons,
+                                          onPressed: () => navigateToPrintShack(context),
                                           style: TextButton.styleFrom(
                                             foregroundColor: Colors.black,
                                             padding: const EdgeInsets.symmetric(horizontal: 12),
