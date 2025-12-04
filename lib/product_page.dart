@@ -291,7 +291,7 @@ class _ProductPageState extends State<ProductPage> {
                 children: [
                   // Product image
                   Container(
-                    height: 300,
+                    height: 500,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
